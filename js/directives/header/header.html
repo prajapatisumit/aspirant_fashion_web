@@ -1,0 +1,142 @@
+<div>
+    <div id="top">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-5 contact">
+                    <p class="hidden-sm hidden-xs">wel-come to wholeseller's world</p>
+                    <!-- <p class="hidden-md hidden-lg">
+                    <a href="#" data-animate-hover="pulse"><i class="fa fa-phone"></i></a>
+                    <a href="#" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
+                </p> -->
+                </div>
+                <div class="col-xs-7">
+                    <!-- <div class="social">
+                    <a href="#" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
+                    <a href="#" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
+                    <a href="#" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
+                    <a href="#" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
+                </div> -->
+
+                    <div class="login" ng-if="!isLogin">
+                        <a data-toggle="modal" ng-controller="signInCtrl" ng-click="openSignupModal()"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a>
+                        <a ng-click="goSignup()"><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Sign up</span></a>
+                    </div>
+                    <div class="login" ng-if="isLogin === true">
+                      <ul class="liststylehide">
+                          <li class="dropdown" >
+                          <a class="dropdown-toggle" data-toggle="dropdown">{{user.displayName}} <b class="caret"></b></a>
+                              <ul class="dropdown-menu dropdownhover">
+                                  <div class="yamm-content">
+                                      <div class="row">
+
+                            <div>
+                                <ul>
+                                    <li>
+                                        <a ng-click="goOrderDetails()"><i class="fa fa-list"></i> My orders</a>
+                                    </li>
+                                    <li>
+                                        <a ng-click="goMyWishList()"><i class="fa fa-heart"></i> My wishlist</a>
+                                    </li>
+                                    <li>
+                                        <a ng-click="goMyAccount()" ><i class="fa fa-user"></i> My account</a>
+                                    </li>
+                                    <li>
+                                        <a ng-click="logout()"><i class="fa fa-sign-out"></i> Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                          </li>
+                    </ul>
+            </div>
+        </div>
+    </div>
+  </div>
+    <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+        <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+            <div class="container row1">
+               <div class="row">
+                <div class="col-sm-2">
+                    <img src="img/aspirantimgs/logo.png" ng-click="gohomepage()" alt="Aspirant fashion logo" style="height: 66px; width: 153px;">
+                    <div class="navbar-buttons">
+                        <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                            <span class="sr-only">Toggle navigation</span>
+                            <i class="fa fa-align-justify"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flipkart-navbar-search col-sm-8 col-xs-11">
+                        <input class="flipkart-navbar-input col-xs-11" type="" placeholder="Search for Products, Brands and more" name="">
+                          <button type="button" class="btn  flipkart-navbar-button col-xs-1">
+                              <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                </div>
+                <div class="cart col-sm-2">
+                    <a class="cart-button" ng-click="goCartPage()">
+                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        <span>CART</span>
+                        <span class="item-number " ng-if="isLogin === true">{{get_qty()}}</span>
+                        <span class="item-number" ng-if="!isLogin">0</span>
+                    </a>
+                </div>
+            </div>
+          </div>
+            <div class="container">
+                <!--/.navbar-header -->
+                <div class="navbar-collapse collapse" id="navigation">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown use-yamm yamm-fw" ng-repeat="category in categoryData">
+                            <a class="dropdown-toggle" data-toggle="dropdown">{{category.name}} <b class="caret"></b></a>
+                            <ul class="dropdown-menu dropdownhover">
+                                <div class="yamm-content">
+                                    <div class="row">
+                                        <div class="col-sm-3 catRight">
+                                            <img ng-src="{{category.image }}" class="img-responsive hidden-xs fixedSizeCatimg" alt="">
+                                        </div>
+                                        <!-- <div class="col-sm-3">
+                                              <h5>Shortcodes</h5>
+
+                                          </div> -->
+                                        <div class="col-sm-6">
+                                            <h5>Aspirant Fashion</h5>
+                                            <ul>
+                                                <li ng-repeat="subcat in category.sub_category"><a ng-click="goProducts(subcat.$id)">{{subcat.name}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                        </li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div ng-cotroller="HomeCtrl">
+                <script type="text/ng-template" id="templates/signInDemo.html" >
+                  <div class="modal-content">
+                                    <div class="modal-header">
+                                          <button type="button" class="close" ng-click="loginwithEmail()"data-dismiss="modal" aria-hidden="true">×</button>
+                                          <h4 class="modal-title" id="Login">Customer login....</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form >
+                                              <div class="form-group">
+                                                  <input type="text" class="form-control" ng-model="user.email" id="email_modal" placeholder="email...">
+                                              </div>
+                                            <div class="form-group">
+                                                  <input type="password" class="form-control"  ng-model="user.password" id="password_modal" placeholder="password">
+                                            </div>
+                                            <p class="text-center">
+                                                <button type="submit" class="btn btn-template-main" ng-click= "login(user)"><i class="fa fa-sign-in"></i> Log in</button>
+                                            </p>
+                                        </form>
+                                        <p class="text-center text-muted">Not registered yet?...</p>
+                                        <p class="text-center text-muted"><a ng-click="goSignup()" ><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
+                                    </div>
+                  </div>
+              </script>
+            </div> -->
+</div>

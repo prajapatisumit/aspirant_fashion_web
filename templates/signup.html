@@ -1,0 +1,82 @@
+<div ng-init="initPage()">
+<div id="heading-breadcrumbs">
+           <div class="container">
+               <div class="row">
+                   <div class="col-md-7">
+                       <h1>New account / Sign in</h1>
+                   </div>
+                   <div class="col-md-5">
+                       <ul class="breadcrumb">
+                           <li><a href="index.html">Home</a>
+                           </li>
+                           <li>New account / Sign in</li>
+                       </ul>
+                      </div>
+               </div>
+           </div>
+       </div>
+
+       <div id="content">
+           <div class="container">
+
+               <div class="row">
+                   <div class="col-md-6">
+                       <div class="box">
+                           <h2 class="text-uppercase">New account</h2>
+
+                           <p class="lead">Not our registered customer yet?</p>
+                                 <hr>
+                          <form method="post">
+                               <div class="form-group">
+                                   <label for="name-login">Name</label>
+                                   <input type="text" ng-model="user.name" class="form-control" id="name-login">
+                               </div>
+                               <div class="form-group">
+                                   <label for="email-login">Email</label>
+                                   <input type="text" ng-model="user.email" class="form-control" id="email-login">
+                               </div>
+                               <div class="form-group">
+                                   <label for="password-login">Password</label>
+                                   <input type="password" ng-model="user.password" class="form-control" id="password-login">
+                               </div>
+                               <div class="text-center">
+                                   <button type="submit" ng-click= "signupWithEmail(user)" class="btn btn-template-main"><i class="fa fa-user-md"></i> Register</button>
+                               </div>
+                           </form>
+                       </div>
+                   </div>
+
+                   <div class="col-md-6">
+                       <div class="box">
+                           <h2 class="text-uppercase">Login</h2>
+
+                           <p class="lead">Already our customer?</p>
+                           <hr>
+                            <!-- <button ng-click= "loginWithFacebook()"><a href="#" class="fa fa-facebook"></a></button> -->
+                            <a class="btn btn-block btn-social btn-facebook fbbutton" ng-click= "loginWithFacebook()">
+                                        <span class="fa fa-facebook"></span> Sign in with Facebook
+                                      </a>
+                             <hr>
+                           <!-- <form name='loginForm'> -->
+                               <div class="form-group">
+                                   <label for="email">Email</label>
+                                   <input type="text" ng-model="loginUser.email" class="form-control" >
+                               </div>
+                               <div class="form-group">
+                                   <label for="password">Password</label>
+                                   <input type="password" ng-model="loginUser.password" class="form-control">
+                               </div>
+                               <div class="text-center">
+                                   <button type="submit"  ng-click= "signinWithEmail()" class="btn btn-template-main"><i class="fa fa-sign-in"></i> Log in</button>
+                               </div>
+                           <!-- </form> -->
+                       </div>
+                   </div>
+               </div>
+               <!-- /.row -->
+
+           </div>
+           <!-- /.container -->
+       </div>
+     </div>
+       <!-- /#content -->

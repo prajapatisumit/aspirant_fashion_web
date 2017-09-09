@@ -1,0 +1,163 @@
+<div>
+  <div id="heading-breadcrumbs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h3>All Products with categories</h3>
+                    </div>
+                    <div class="col-md-5">
+                        <ul class="breadcrumb">
+                            <li><a ng-click="goHomepage()">Home</a>
+                            </li>
+                            <li>All Products</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+      <div id="content">
+                  <div class="container">
+                      <div class="row">
+                          <!-- *** LEFT COLUMN ***
+      			_________________________________________________________ -->
+                          <div class="col-sm-3">
+                              <!-- *** MENUS AND FILTERS ***
+       _______________________________________________________ -->
+                              <div class="panel panel-default sidebar-menu">
+                                  <div class="panel-heading">
+                                      <h3 class="panel-title">Categories</h3>
+                                  </div>
+                                  <div class="panel-body">
+                                      <ul class="nav nav-pills nav-stacked category-menu">
+                                          <li ng-repeat="category in sidebarData">
+                                              <a>{{category.name}}</a>
+                                              <ul>
+                                                <li ng-repeat="subcat in category.sub_category"  ><a ng-click="getProductById(subcat.$id)" ng-class="{selectedSidebarTab:subcat.$id === selectedId}" >{{subcat.name}}</a>
+                                                  </li>
+                                              </ul>
+                                          </li>
+                                      </ul>
+                                  </div>
+                              </div>
+
+                              <div class="panel panel-default sidebar-menu">
+
+                                  <div class="panel-heading">
+                                      <h3 class="panel-title">Brands</h3>
+                                      <a class="btn btn-xs btn-danger pull-right" href="#"><i class="fa fa-times-circle"></i> <span class="hidden-sm">Clear</span></a>
+                                  </div>
+
+                                  <div class="panel-body">
+
+                                      <form>
+                                          <div class="form-group">
+                                              <div class="checkbox"  ng-repeat="brand in brandData" selected="true" >
+                                                  <label>
+                                                      <input type="checkbox"  ng-checked="selection.indexOf(brand) > -1" ng-click="selectedBrand(brand)">{{brand.name}}
+                                                  </label>
+                                              </div>
+                                          </div>
+                                     <!-- ng-click="selectedBrand(brand)"
+                                          ng-class="{brandSelected : brand.is_selected === true }"  -->
+                                          <!-- <button class="btn btn-default btn-sm btn-template-main"><i class="fa fa-pencil"></i> Apply</button> -->
+
+                                      </form>
+
+                                  </div>
+                              </div>
+
+                              <!-- *** MENUS AND FILTERS END *** -->
+
+                              <!-- <div class="banner">
+                                  <a href="shop-category.html">
+                                      <img src="img/banner.jpg" alt="sales 2014" class="img-responsive">
+                                  </a>
+                              </div> -->
+                              <!-- /.banner -->
+
+                          </div>
+                          <!-- /.col-md-3 -->
+
+                          <!-- *** LEFT COLUMN END *** -->
+
+                          <!-- *** RIGHT COLUMN ***
+      			_________________________________________________________ -->
+
+                          <div class="col-sm-9">
+                              <div class="row products" >
+                                  <div class="col-md-4 col-sm-6" ng-repeat="item in categoryData">
+                             <div class="product" ng-click="goProductpage(item.$id)">
+                                 <div class="image">
+                                     <a>
+                                         <img  ng-src="{{item.image }}" alt=""  class="img-responsive image1 fixedSizeimg"  >
+                                     </a>
+                                 </div>
+                                 <!-- /.image -->
+                                 <div class="text">
+                                     <h3><a>{{item.description}}</a></h3>
+                                     <p class="price">{{item.price}}</p>
+                                     <p class="buttons">
+                                         <a href="shop-detail.html" class="btn btn-default">View detail</a>
+                                         <a href="shop-basket.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                     </p>
+                                 </div>
+                                 <!-- /.text -->
+                             </div>
+                             <!-- /.product -->
+                           </div>
+                              <!-- /.col-md-4 -->
+                              </div>
+                              <!-- /.products -->
+
+                              <div class="row">
+
+                                 <!-- <div class="col-md-12 banner">
+                                      <a href="#">
+                                          <img src="img/banner2.jpg" alt="" class="img-responsive">
+                                      </a>
+                                  </div> -->
+
+                              </div>
+
+
+                              <!-- <div class="pages">
+
+                                  <p class="loadMore">
+                                      <a href="#" class="btn btn-template-main"><i class="fa fa-chevron-down"></i> Load more</a>
+                                  </p>
+
+                                  <ul class="pagination">
+                                      <li><a href="#">&laquo;</a>
+                                      </li>
+                                      <li class="active"><a href="#">1</a>
+                                      </li>
+                                      <li><a href="#">2</a>
+                                      </li>
+                                      <li><a href="#">3</a>
+                                      </li>
+                                      <li><a href="#">4</a>
+                                      </li>
+                                      <li><a href="#">5</a>
+                                      </li>
+                                      <li><a href="#">&raquo;</a>
+                                      </li>
+                                  </ul>
+                              </div> -->
+
+
+                          </div>
+                          <!-- /.col-md-9 -->
+
+                          <!-- *** RIGHT COLUMN END *** -->
+
+                      </div>
+
+                  </div>
+                  <!-- /.container -->
+              </div>
+              <!-- /#content -->
+              <!-- *** GET IT ***
+      _________________________________________________________ -->
+
+</div>
