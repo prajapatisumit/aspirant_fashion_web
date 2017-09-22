@@ -1,6 +1,24 @@
 angular.module('aspirantfashion')
-.controller("homeCtrl", function($scope,$rootScope,SessionService,$rootScope) {
-  console.log('homepage is working');
+.controller("homeCtrl", function($scope,$state,$rootScope,SessionService,$rootScope,$firebaseArray) {
+  $(document).ready(function() {
+
+    $(".owl-carousel").owlCarousel({
+        navigation : true, // Show next and prev buttons
+        paginationSpeed : 400,
+        items : 1,
+        itemsDesktop : false,
+        itemsDesktopSmall : false,
+        itemsTablet: false,
+        autoplay:true,
+        infinite: false,
+        autoplayTimeout:4000,
+        goToFirst: true,
+        loop:true,
+        itemsMobile : false,
+    });
+
+  });
+  // console.log('homepage is working');
       if (!!$rootScope.userLog) {
         $scope.user = $rootScope.userLog;
     console.log("$scope.user at rootscope " + angular.toJson($scope.user ,' '));
@@ -54,5 +72,18 @@ angular.module('aspirantfashion')
 
         }
       });
-
+      $scope.loadTrendingProducts = function () {
+        trendingDataRef = firebase.database().ref('trendingProducts').limitToFirst(4);
+            sidebarDataObj = $firebaseArray(trendingDataRef);
+            sidebarDataObj.$loaded()
+              .then(function (response) {
+                $scope.trendingData = response;
+              // console.log("$scope.trendingData    : " + angular.toJson($scope.trendingData, ' '));
+              });
+      };
+      $scope.goProductpage= function (selectedProId) {
+        console.log('its working'+selectedProId);
+        $state.go('productdetails',{'selected_product_id':selectedProId});
+      };
+$scope.loadTrendingProducts();
 });

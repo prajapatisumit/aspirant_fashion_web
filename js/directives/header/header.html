@@ -4,10 +4,10 @@
             <div class="row">
                 <div class="col-xs-5 contact">
                     <p class="hidden-sm hidden-xs">wel-come to wholeseller's world</p>
-                    <!-- <p class="hidden-md hidden-lg">
+                    <p class="hidden-md hidden-lg">
                     <a href="#" data-animate-hover="pulse"><i class="fa fa-phone"></i></a>
                     <a href="#" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
-                </p> -->
+                </p>
                 </div>
                 <div class="col-xs-7">
                     <!-- <div class="social">
@@ -54,9 +54,9 @@
         </div>
     </div>
   </div>
-    <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
-        <div class="navbar navbar-default yamm" role="navigation" id="navbar">
-            <div class="container row1">
+  <div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+      <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+        <div class="container row1">
                <div class="row">
                 <div class="col-sm-2">
                     <img src="img/aspirantimgs/logo.png" ng-click="gohomepage()" alt="Aspirant fashion logo" style="height: 66px; width: 153px;">
@@ -83,38 +83,41 @@
                 </div>
             </div>
           </div>
-            <div class="container">
-                <!--/.navbar-header -->
+           <div class="container nav_top">
                 <div class="navbar-collapse collapse" id="navigation">
                     <ul class="nav navbar-nav">
                         <li class="dropdown use-yamm yamm-fw" ng-repeat="category in categoryData">
                             <a class="dropdown-toggle" data-toggle="dropdown">{{category.name}} <b class="caret"></b></a>
-                            <ul class="dropdown-menu dropdownhover">
+                            <ul class="dropdown-menu">
+                              <li>
                                 <div class="yamm-content">
                                     <div class="row">
+                                      <div class="col-sm-6">
+                                         <h5>Aspirant Fashion</h5>
+                                         <ul>
+                                             <li ng-repeat="subcat in category.sub_category"><a ng-click="goProducts(subcat.$id)">{{subcat.name}}</a>
+                                             </li>
+                                         </ul>
+                                     </div>
                                         <div class="col-sm-3 catRight">
                                             <img ng-src="{{category.image }}" class="img-responsive hidden-xs fixedSizeCatimg" alt="">
                                         </div>
-                                        <!-- <div class="col-sm-3">
-                                              <h5>Shortcodes</h5>
+                                      <div class="col-sm-3">
+                                              <!-- <h5>Shortcodes</h5> -->
 
-                                          </div> -->
-                                        <div class="col-sm-6">
-                                            <h5>Aspirant Fashion</h5>
-                                            <ul>
-                                                <li ng-repeat="subcat in category.sub_category"><a ng-click="goProducts(subcat.$id)">{{subcat.name}}</a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                          </div>
+
                                     </div>
                                 </div>
-                        </li>
+                              </li>
+                            </ul>
+                          </li>
                         </ul>
                 </div>
             </div>
+            </div>
         </div>
-    </div>
-    <!-- <div ng-cotroller="HomeCtrl">
+    <div ng-cotroller="HomeCtrl">
                 <script type="text/ng-template" id="templates/signInDemo.html" >
                   <div class="modal-content">
                                     <div class="modal-header">
@@ -138,5 +141,5 @@
                                     </div>
                   </div>
               </script>
-            </div> -->
+            </div>
 </div>
