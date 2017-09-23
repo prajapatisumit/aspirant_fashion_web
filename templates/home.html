@@ -4,67 +4,20 @@
    <div class="home-carousel">
       <div class="dark-mask"></div>
       <div class="container">
-         <div class="homepage owl-carousel owl-theme">
-            <div class="item">
-               <div class="row">
-                  <div class="col-sm-5 right">
-                     <h1>Multipurpose responsive theme</h1>
-                     <p>Business. Corporate. Agency.
-                        <br />Portfolio. Blog. E-commerce.
-                     </p>
-                  </div>
-                  <div class="col-sm-7">
-                     <img class="img-responsive" src="img/template-homepage.png" alt="">
-                  </div>
-               </div>
-            </div>
-            <div class="item">
-               <div class="row">
-                  <div class="col-sm-7 text-center">
-                     <img class="img-responsive" src="img/template-mac.png" alt="">
-                  </div>
-                  <div class="col-sm-5">
-                     <h2>46 HTML pages full of features</h2>
-                     <ul class="list-style-none">
-                        <li>Sliders and carousels</li>
-                        <li>4 Header variations</li>
-                        <li>Google maps, Forms, Megamenu, CSS3 Animations and much more</li>
-                        <li>+ 11 extra pages showing template features</li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-            <div class="item">
-               <div class="row">
-                  <div class="col-sm-5 right">
-                     <h1>Design</h1>
-                     <ul class="list-style-none">
-                        <li>Clean and elegant design</li>
-                        <li>Full width and boxed mode</li>
-                        <li>Easily readable Roboto font and awesome icons</li>
-                        <li>7 preprepared colour variations</li>
-                     </ul>
-                  </div>
-                  <div class="col-sm-7">
-                     <img class="img-responsive" src="img/template-easy-customize.png" alt="">
-                  </div>
-               </div>
-            </div>
-            <div class="item">
-               <div class="row">
-                  <div class="col-sm-7">
-                     <img class="img-responsive" src="img/template-easy-code.png" alt="">
-                  </div>
-                  <div class="col-sm-5">
-                     <h1>Easy to customize</h1>
-                     <ul class="list-style-none">
-                        <li>7 preprepared colour variations.</li>
-                        <li>Easily to change fonts</li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-         </div>
+        <data-owl-carousel class="homepage owl-carousel owl-theme" >
+      <div owl-carousel-item="" ng-repeat="slider in sliderData" class="item">
+           <div class="row">
+              <div class="col-sm-5 right">
+                 <h1>{{slider.title}}</h1>
+                 <p>{{slider.description}}
+                 </p>
+              </div>
+              <div class="col-sm-7">
+                 <img  width="500px" height="400px" src="{{slider.image}}" alt="">
+              </div>
+           </div>
+      </div>
+    </data-owl-carousel>
          <!-- /.project owl-slider -->
       </div>
    </div>
@@ -143,23 +96,23 @@
          <!-- *** BLOG HOMEPAGE ***
             _________________________________________________________ -->
          <div class="row">
-            <div class="col-md-3 col-sm-6" ng-repeat="products in trendingData">
-               <div class="box-image-text blog" ng-click="goProductpage(products.$id)">
+            <div class="col-md-3 col-sm-6" ng-repeat="trendingproducts in trendingData">
+               <div class="box-image-text blog cursor" ng-click="goProductpage(trendingproducts.$id)">
                   <div class="top">
                      <div class="image">
-                        <img ng-src="{{products.image }}" alt="" class="img-responsive trendingImages">
+                        <img ng-src="{{trendingproducts.image }}" alt="" class="img-responsive trendingImages">
                      </div>
                      <div class="bg"></div>
                      <div class="text">
                         <p class="buttons">
-                           <a class="btn btn-template-transparent-primary" ng-click="goProductpage(products.$id)"><i class="fa fa-link"></i>view product details</a>
+                           <a class="btn btn-template-transparent-primary cursor" ng-click="goProductpage(trendingproducts.$id)"><i class="fa fa-link"></i>view product</a>
                         </p>
                      </div>
                   </div>
                   <div class="content">
-                     <h4><a href="blog-post.html">{{products.name}}</a></h4>
-                     <p class="intro">{{products.description}}</p>
-                     <p class="intro">{{products.price}}</p>
+                     <h4 class="cursor">{{trendingproducts.name}}</h4>
+                     <p class="intro cursor">{{trendingproducts.description}}</p>
+                     <p class="intro cursor"><i class="fa fa-inr" aria-hidden="true">{{trendingproducts.price}}</i></p>
                      <!-- <p class="read-more"><a href="blog-post.html" class="btn btn-template-main">Continue reading</a>
                         </p> -->
                   </div>
@@ -170,6 +123,158 @@
    </div>
    <!-- /.container -->
 </section>
+        <section class="bar background-white no-mb">
+              <div class="container">
+                  <div class="col-md-12">
+                    <div class="heading text-center">
+                      <h4>More Selling Products</h4>
+                    </div>
+                    <!-- *** BLOG HOMEPAGE ***
+                    _________________________________________________________ -->
+                    <div class="row">
+            <div class="col-md-3 col-sm-6" ng-repeat="moreSellingproducts in moresellingData">
+                <div class="box-image-text blog cursor" ng-click="goProductpage(moreSellingproducts.$id)">
+                  <div class="top">
+                     <div class="image">
+                        <img ng-src="{{moreSellingproducts.image }}" alt="" class="img-responsive trendingImages">
+                     </div>
+                     <div class="bg"></div>
+                     <div class="text">
+                        <p class="buttons">
+                           <a class="btn btn-template-transparent-primary cursor" ng-click="goProductpage(moreSellingproducts.$id)"><i class="fa fa-link"></i>view product</a>
+                        </p>
+                     </div>
+                  </div>
+                  <div class="content">
+                     <h4 class="cursor">{{moreSellingproducts.name}}</h4>
+                     <p class="intro cursor">{{moreSellingproducts.description}}</p>
+                     <p class="intro cursor"><i class="fa fa-inr" aria-hidden="true">{{moreSellingproducts.price}}</i></p>
+                     <!-- <p class="read-more"><a href="blog-post.html" class="btn btn-template-main">Continue reading</a>
+                        </p> -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- /.container -->
+</section>
+
+<section class="bar background-white no-mb">
+   <div class="container">
+      <div class="col-md-12">
+         <div class="heading text-center">
+            <h4>Latest Products</h4>
+         </div>
+         <!-- *** BLOG HOMEPAGE ***
+            _________________________________________________________ -->
+         <div class="row">
+            <div class="col-md-3 col-sm-6" ng-repeat="latestProducts in latestData">
+               <div class="box-image-text blog cursor" ng-click="goProductpage(latestProducts.$id)">
+                  <div class="top">
+                     <div class="image">
+                        <img ng-src="{{latestProducts.image }}" alt="" class="img-responsive trendingImages">
+                     </div>
+                     <div class="bg"></div>
+                     <div class="text">
+                        <p class="buttons">
+                           <a class="btn btn-template-transparent-primary cursor" ng-click="goProductpage(latestProducts.$id)"><i class="fa fa-link"></i>view product</a>
+                        </p>
+                     </div>
+                  </div>
+                  <div class="content">
+                     <h4 class="cursor">{{latestProducts.name}}</h4>
+                     <p class="intro cursor">{{latestProducts.description}}</p>
+                     <p class="intro cursor"><i class="fa fa-inr" aria-hidden="true">{{latestProducts.price}}</i></p>
+                     <!-- <p class="read-more"><a href="blog-post.html" class="btn btn-template-main">Continue reading</a>
+                        </p> -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- /.container -->
+</section>
+
+<section class="bar background-white no-mb">
+   <div class="container">
+      <div class="col-md-12">
+         <div class="heading text-center">
+            <h4>Discounted Products</h4>
+         </div>
+         <!-- *** BLOG HOMEPAGE ***
+            _________________________________________________________ -->
+         <div class="row">
+            <div class="col-md-3 col-sm-6" ng-repeat="discountedProducts in discountedData">
+               <div class="box-image-text blog cursor" ng-click="goProductpage(discountedProducts.$id)">
+                  <div class="top">
+                     <div class="image">
+                        <img ng-src="{{discountedProducts.image }}" alt="" class="img-responsive trendingImages">
+                     </div>
+                     <div class="bg"></div>
+                     <div class="text">
+                        <p class="buttons">
+                           <a class="btn btn-template-transparent-primary cursor" ng-click="goProductpage(discountedProducts.$id)"><i class="fa fa-link"></i>view product</a>
+                        </p>
+                     </div>
+                  </div>
+                  <div class="content">
+                     <h4 class="cursor">{{discountedProducts.name}}</h4>
+                     <p class="intro cursor">{{discountedProducts.description}}</p>
+                     <p class="intro cursor"><i class="fa fa-inr" aria-hidden="true">{{discountedProducts.price}}</i></p>
+                     <!-- <p class="read-more"><a href="blog-post.html" class="btn btn-template-main">Continue reading</a>
+                        </p> -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- /.container -->
+</section>
+
+
+
+<section class="bar background-white no-mb">
+   <div class="container">
+      <div class="col-md-12">
+         <div class="heading text-center">
+            <h4>Shop by price</h4>
+         </div>
+         <!-- *** BLOG HOMEPAGE ***
+            _________________________________________________________ -->
+         <div class="row">
+            <div class="col-md-3 col-sm-6" ng-repeat="ShopByPriceProducts in ShopByPriceData">
+               <div class="box-image-text blog cursor" ng-click="goProductpage(ShopByPriceProducts.$id)">
+                  <div class="top">
+                     <div class="image">
+                        <img ng-src="{{ShopByPriceProducts.image }}" alt="" class="img-responsive trendingImages">
+                     </div>
+                     <div class="bg"></div>
+                     <div class="text">
+                        <p class="buttons">
+                           <a class="btn btn-template-transparent-primary cursor" ng-click="goProductpage(ShopByPriceProducts.$id)"><i class="fa fa-link"></i>view product</a>
+                        </p>
+                     </div>
+                  </div>
+                  <div class="content">
+                     <h4 class="cursor">{{ShopByPriceProducts.name}}</h4>
+                     <p class="intro cursor">{{ShopByPriceProducts.description}}</p>
+                     <p class="intro cursor"><i class="fa fa-inr" aria-hidden="true">{{ShopByPriceProducts.price}}</i></p>
+                     <!-- <p class="read-more"><a href="blog-post.html" class="btn btn-template-main">Continue reading</a>
+                        </p> -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- /.container -->
+</section>
+
+
+
 <section class="bar background-image-fixed-2 no-mb color-white text-center">
    <div class="dark-mask"></div>
    <div class="container">

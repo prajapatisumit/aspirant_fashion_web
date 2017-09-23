@@ -1,43 +1,5 @@
 angular.module('aspirantfashion')
 .controller("homeCtrl", function($scope,$state,$rootScope,SessionService,$rootScope,$firebaseArray) {
-  $(document).ready(function() {
-
-    $(".owl-carousel").owlCarousel({
-        navigation : true, // Show next and prev buttons
-        paginationSpeed : 400,
-        items : 1,
-        itemsDesktop : false,
-        itemsDesktopSmall : false,
-        itemsTablet: false,
-        autoplay:true,
-        infinite: false,
-        autoplayTimeout:4000,
-        goToFirst: true,
-        loop:true,
-        itemsMobile : false
-    });
-
-  });
-  // $scope.sliderData = {};
-  // $scope.$watch('sliderData', function() {
-  //       // alert('hey, myVar has changed!');
-  //       console.log('tets : ');
-  //         $(".owl-carousel").owlCarousel({
-  //             navigation : true, // Show next and prev buttons
-  //             paginationSpeed : 400,
-  //             items : 1,
-  //             itemsDesktop : false,
-  //             itemsDesktopSmall : false,
-  //             itemsTablet: false,
-  //             autoplay:true,
-  //             infinite: false,
-  //             autoplayTimeout:4000,
-  //             goToFirst: true,
-  //             loop:true,
-  //             itemsMobile : false
-  //         });
-  //   });
-
   // console.log('homepage is working');
       if (!!$rootScope.userLog) {
         $scope.user = $rootScope.userLog;
@@ -101,28 +63,45 @@ angular.module('aspirantfashion')
               // console.log("$scope.trendingData    : " + angular.toJson($scope.trendingData, ' '));
               });
       };
+      $scope.loadMoreSellingProducts = function () {
+        moresellingDataRef = firebase.database().ref('moresellingproducts').limitToLast(4);
+            moresellingDataObj = $firebaseArray(moresellingDataRef);
+            moresellingDataObj.$loaded()
+              .then(function (response) {
+                $scope.moresellingData = response;
+              // console.log("$scope.trendingData    : " + angular.toJson($scope.trendingData, ' '));
+              });
+      };
+      $scope.loadlatestproducts = function () {
+        latestDataRef = firebase.database().ref('latestproducts').limitToFirst(4);
+            latestDataObj = $firebaseArray(latestDataRef);
+            latestDataObj.$loaded()
+              .then(function (response) {
+                $scope.latestData = response;
+              });
+      };
+      $scope.loadDiscountedProducts = function () {
+        discountedDataRef = firebase.database().ref('discountedproduct').limitToFirst(4);
+          discountedDataObj = $firebaseArray(discountedDataRef);
+                discountedDataObj.$loaded()
+              .then(function (response) {
+                $scope.discountedData = response;
+              });
+      };
+      $scope.loadShopByPriceProducts = function () {
+        ShopByPriceDataRef = firebase.database().ref('shopbyprice').limitToLast(4);
+          ShopByPriceDataObj = $firebaseArray(ShopByPriceDataRef);
+            ShopByPriceDataObj.$loaded()
+              .then(function (response) {
+                $scope.ShopByPriceData = response;
+              });
+      };
       $scope.loadSlider = function () {
         sliderDataRef = firebase.database().ref('slider');
             sliderDataObj = $firebaseArray(sliderDataRef);
             sliderDataObj.$loaded()
               .then(function (response) {
                 $scope.sliderData = response;
-                // $(".owl-carousel").owlCarousel({
-                //     navigation : true, // Show next and prev buttons
-                //     paginationSpeed : 400,
-                //     items : 1,
-                //     itemsDesktop : false,
-                //     itemsDesktopSmall : false,
-                //     itemsTablet: false,
-                //     autoplay:true,
-                //     infinite: false,
-                //     autoplayTimeout:50000,
-                //     goToFirst: true,
-                //     loop:true,
-                //     itemsMobile : false
-                // });
-
-            //  console.log("$scope.sliderData    : " + angular.toJson($scope.sliderData, ' '));
               });
       };
       $scope.goProductpage= function (selectedProId) {
@@ -130,5 +109,9 @@ angular.module('aspirantfashion')
         $state.go('productdetails',{'selected_product_id':selectedProId});
       };
 $scope.loadTrendingProducts();
+$scope.loadMoreSellingProducts();
+$scope.loadlatestproducts();
+$scope.loadDiscountedProducts();
+$scope.loadShopByPriceProducts();
 $scope.loadSlider();
 });
