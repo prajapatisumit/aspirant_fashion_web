@@ -14,10 +14,30 @@ angular.module('aspirantfashion')
         autoplayTimeout:4000,
         goToFirst: true,
         loop:true,
-        itemsMobile : false,
+        itemsMobile : false
     });
 
   });
+  // $scope.sliderData = {};
+  // $scope.$watch('sliderData', function() {
+  //       // alert('hey, myVar has changed!');
+  //       console.log('tets : ');
+  //         $(".owl-carousel").owlCarousel({
+  //             navigation : true, // Show next and prev buttons
+  //             paginationSpeed : 400,
+  //             items : 1,
+  //             itemsDesktop : false,
+  //             itemsDesktopSmall : false,
+  //             itemsTablet: false,
+  //             autoplay:true,
+  //             infinite: false,
+  //             autoplayTimeout:4000,
+  //             goToFirst: true,
+  //             loop:true,
+  //             itemsMobile : false
+  //         });
+  //   });
+
   // console.log('homepage is working');
       if (!!$rootScope.userLog) {
         $scope.user = $rootScope.userLog;
@@ -81,9 +101,34 @@ angular.module('aspirantfashion')
               // console.log("$scope.trendingData    : " + angular.toJson($scope.trendingData, ' '));
               });
       };
+      $scope.loadSlider = function () {
+        sliderDataRef = firebase.database().ref('slider');
+            sliderDataObj = $firebaseArray(sliderDataRef);
+            sliderDataObj.$loaded()
+              .then(function (response) {
+                $scope.sliderData = response;
+                // $(".owl-carousel").owlCarousel({
+                //     navigation : true, // Show next and prev buttons
+                //     paginationSpeed : 400,
+                //     items : 1,
+                //     itemsDesktop : false,
+                //     itemsDesktopSmall : false,
+                //     itemsTablet: false,
+                //     autoplay:true,
+                //     infinite: false,
+                //     autoplayTimeout:50000,
+                //     goToFirst: true,
+                //     loop:true,
+                //     itemsMobile : false
+                // });
+
+            //  console.log("$scope.sliderData    : " + angular.toJson($scope.sliderData, ' '));
+              });
+      };
       $scope.goProductpage= function (selectedProId) {
-        console.log('its working'+selectedProId);
+        // console.log('its working'+selectedProId);
         $state.go('productdetails',{'selected_product_id':selectedProId});
       };
 $scope.loadTrendingProducts();
+$scope.loadSlider();
 });

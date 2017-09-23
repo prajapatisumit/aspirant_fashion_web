@@ -1588,7 +1588,7 @@ fieldset[disabled] .btn-template-primary.active {
   height: 100%;
   opacity: 0;
   filter: alpha(opacity=0);
-  background: #38a7bb;
+  background: #6b6e6f;
 }
 .box-image-text .top .name {
   position: absolute;
@@ -1642,7 +1642,7 @@ fieldset[disabled] .btn-template-primary.active {
   color: #999999;
 }
 .box-image-text:hover .bg {
-  opacity: 0.7;
+  opacity: 0.4;
   filter: alpha(opacity=70);
 }
 .box-image-text:hover .name {
@@ -3079,7 +3079,7 @@ fieldset[disabled] .btn-template-primary.active {
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
   color: #555555;
-  background-color: #80cbd9;
+  /*background-color: #80cbd9;*/
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
@@ -3698,6 +3698,9 @@ margin-top: 10px;
 margin-bottom: 10px;
 }
 .trendingImages{
-  height: 200px !important;
+  height: 250px !important;
   cursor: pointer;
+}
+.button_center{
+  text-align: center;
 }
