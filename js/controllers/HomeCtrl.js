@@ -104,10 +104,24 @@ angular.module('aspirantfashion')
                 $scope.sliderData = response;
               });
       };
+      $scope.loadCategory = function () {
+        categoryRef = firebase.database().ref('category').limitToFirst(6);
+            categoryObj = $firebaseArray(categoryRef);
+            categoryObj.$loaded()
+              .then(function (response) {
+                $scope.categoryData = response;
+                // console.log("$scope.categoryData    : " + angular.toJson($scope.categoryData, ' '));
+                for(var i=0;i<$scope.categoryData.length;i++) {
+                    $scope.categoryData[i].sub_category = $firebaseArray(firebase.database().ref('subcategory').orderByChild('categoryid')
+                        .equalTo($scope.categoryData[i].$id));
+                }
+              });
+      };
       $scope.goProductpage= function (selectedProId) {
         // console.log('its working'+selectedProId);
         $state.go('productdetails',{'selected_product_id':selectedProId});
       };
+$scope.loadCategory();
 $scope.loadTrendingProducts();
 $scope.loadMoreSellingProducts();
 $scope.loadlatestproducts();

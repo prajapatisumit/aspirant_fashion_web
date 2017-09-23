@@ -82,7 +82,7 @@ p.lead {
 }
 section,
 div.section {
-  margin-bottom: 40px;
+  /*margin-bottom: 40px;*/
 }
 .no-mb {
   margin-bottom: 0 !important;
@@ -98,7 +98,6 @@ div.section {
 .heading h3,
 .heading h4,
 .heading h5 {
-  display: inline-block;
   border-bottom: solid 5px #38a7bb;
   line-height: 1.1;
   margin-bottom: 0;
@@ -1588,6 +1587,7 @@ fieldset[disabled] .btn-template-primary.active {
   opacity: 0;
   filter: alpha(opacity=0);
   background: #6b6e6f;
+  margin-left: 10%;
 }
 .box-image-text .top .name {
   position: absolute;
@@ -1751,7 +1751,7 @@ fieldset[disabled] .btn-template-primary.active {
 .bar {
   position: relative;
   background: #38a7bb;
-  /*padding: 60px 0px;*/
+  padding: 25px 0px;
 }
 .bar.background-pentagon {
   background: url('../img/texture-bw.png') center center repea;
@@ -3699,10 +3699,12 @@ margin-bottom: 10px;
 .trendingImages{
   height: 250px !important;
   cursor: pointer;
+  margin-left: 10%;
 }
 .button_center{
   text-align: center;
 }
 .cursor{
   cursor: pointer;
+  margin-left: 10%;
 }

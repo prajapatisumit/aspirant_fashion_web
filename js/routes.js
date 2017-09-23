@@ -1,5 +1,5 @@
 angular.module('aspirantfashion')
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider,$locationProvider) {
   $stateProvider
   .state('home', {
   url: '/home',
@@ -56,6 +56,6 @@ angular.module('aspirantfashion')
       templateUrl: 'templates/ordersummary.html',
       controller: 'orderSummaryCtrl'
 })
-
+  // $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/home');
 });
