@@ -56,3 +56,14 @@
   width: 104px;
   padding-top: 8px;
 }
+.price_line{
+  float: left;
+  font-size: 20px;
+}
+.size_align{
+  float: left !important;
+  padding-left: 10px;
+}
+.buttons_addbuy{
+  padding-top: 20%;
+}

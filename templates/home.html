@@ -35,7 +35,7 @@
         </div>
          <div class="row">
             <div class="col-md-4" ng-repeat="category in categoryData">
-               <div class="box-simple">
+               <div class="box-simple" ng-click="goCategoryWiseAllproducts(category.$id)">
                  <img class="catImageset cursor" ng-src="{{category.image}}" class="fa fa-desktop"></img>
                   <h3>{{category.name}}</h3>
                   <p>{{category.description}}</p>

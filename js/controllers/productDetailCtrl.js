@@ -39,10 +39,10 @@ $scope.gohomepage= function () {
             // console.log("$scope.favouritProduct : " + angular.toJson($scope.favouritProduct , ''));
             if (!!$scope.favouritProduct.productId) {
                 $scope.isFavourite = true;
-                console.log("$scope.isFavourite true calling.. : " + $scope.isFavourite);
+                // console.log("$scope.isFavourite true calling.. : " + $scope.isFavourite);
             } else {
                 $scope.isFavourite = false;
-                console.log("$scope.isFavourite false calling ... : " + $scope.isFavourite);
+                // console.log("$scope.isFavourite false calling ... : " + $scope.isFavourite);
             }
 
           });

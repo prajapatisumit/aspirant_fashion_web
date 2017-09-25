@@ -1,29 +1,18 @@
-        <div id="heading-breadcrumbs">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-7">
-                        <h1>{{selectedProductData.name}}</h1>
-                    </div>
-                    <div class="col-md-5">
-                        <ul class="breadcrumb">
-                            <li><a ng-click="gohomepage()">Home</a>
-                            </li>
-                            <li>{{selectedProductData.name}}</li>
-                        </ul>
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-12">
+                      <ul class="breadcrumb" style="text-align:left;">
+                          <li><a ng-click="goHomepage()">Home</a>
+                          </li>
+                          <li>All Products</li>
+                      </ul>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="content">
+                  </div>
+              </div>
+          </div>
+<div id="content">
             <div class="container" ng-if="!!selectedProductData">
-
                 <div class="row">
-
-                    <!-- *** LEFT COLUMN ***
-		    _________________________________________________________ -->
-
                     <div class="col-md-12">
                         <div class="row" id="productMain">
                             <div class="col-sm-6">
@@ -47,39 +36,33 @@
                             <div class="col-sm-6">
                                 <div class="box">
                                     <form>
+                                        <h4>{{selectedProductData.name}}</h4>
+                                        <ul  ng-repeat = "product in selectedProductData.product_specification" >
+                                          <li>{{product.name}} : {{product.value}}</li>
+                                          </ul>
+                                        <p class="price_line">price : </p>
+                                        <p class="fa fa-inr price_line">  {{selectedProductData.price}}</p><br><br>
                                         <div class="sizes">
-
-                                            <h3>Available sizes</h3>
-
-                                            <label for="size_s">
-                                                <a href="#">S</a>
-                                                <input type="radio" id="size_s" name="size" value="s" class="size-input">
+                                            <h5 ng-if="selectedProductData.size.length > 1">Available sizes</h5>
+                                            <label class="size_align" for="size_s" ng-repeat="size in selectedProductData.size" ng-if="selectedProductData.size.length > 1">
+                                                <a >{{size}}</a>
+                                                <input type="radio" id="size" name="size" value="{{size}}" class="size-input">
                                             </label>
-                                            <label for="size_m">
-                                                <a href="#">M</a>
-                                                <input type="radio" id="size_m" name="size" value="m" class="size-input">
-                                            </label>
-                                            <label for="size_l">
-                                                <a href="#">L</a>
-                                                <input type="radio" id="size_l" name="size" value="l" class="size-input">
-                                            </label>
-
                                         </div>
-
-                                        <p class="fa fa-inr price" >{{selectedProductData.price}}</p>
-
-                                        <p class="text-center">
+                                          <div class="buttons_addbuy">
                                             <button type="submit" class="btn btn-template-main" ng-click="addToCart(selectedProductData)"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+                                            <button type="submit" class="btn btn-template-main" ng-click=""><i class="fa fa-bolt" aria-hidden="true"></i> Buy Now</button>
                                             <button type="submit" class="btn btn-default" ng-if="isFavourite"  ng-click="deletefevorite(selectedProductData.$id)" style="color: red;"><i class="fa fa-heart-o"></i>
                                             </button>
                                             <button type="submit" class="btn btn-default" ng-if="!isFavourite" ng-click="setFavourite(selectedProductData)"  title="Add to wishlist"><i class="fa fa-heart-o"></i>
                                             </button>
-                                        </p>
+                                          </div>
+
                                     </form>
                                 </div>
                                     <div class="row" id="thumbs">
                                       <div class="col-xs-4" ng-repeat = "productimage in selectedProductData.images" >
-                                        <a ng-href="{{productimage}}" class="thumb">
+                                            <a ng-href="{{productimage}}" class="thumb">
                                             <img ng-src="{{productimage}}" alt="" class="img-responsive fixedheightThumb">
                                         </a>
                                       </div>
@@ -94,21 +77,9 @@
                             <p>
                                 <h4>Product details</h4>
                                 <p>{{selectedProductData.description}} </p>
-                                <!-- <h4>Material & care</h4>
-                                <ul>
-                                    <li>Polyester</li>
-                                    <li>Machine wash</li>
-                                </ul> -->
-                                <h4>Size & Fit</h4>
-                                <ul>
-                                    <li>Your size is : {{selectedProductData.size}}</li>
-                                    <!-- <li>The model (height 5'8" and chest 33") is wearing a size S</li> -->
-                                </ul>
-
-                                <!-- <blockquote>
-                                    <p><em>Define style this season with Armani's new range of trendy tops, crafted with intricate details. Create a chic statement look by teaming this lace number with skinny jeans and pumps.</em>
-                                    </p>
-                                </blockquote> -->
+                                <ul ng-repeat = "product in selectedProductData.product_specification " >
+                                  <li>{{product.name}} : {{product.value}}</li>
+                                  </ul>
                         </div>
 
                         <div class="box social" id="product-social">

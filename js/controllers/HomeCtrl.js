@@ -117,6 +117,11 @@ angular.module('aspirantfashion')
                 }
               });
       };
+      $scope.goCategoryWiseAllproducts = function(categoryId){
+          console.log('its working'+categoryId);
+            $state.go('catProducts',{'category_id':categoryId});
+      }
+
       $scope.goProductpage= function (selectedProId) {
         // console.log('its working'+selectedProId);
         $state.go('productdetails',{'selected_product_id':selectedProId});

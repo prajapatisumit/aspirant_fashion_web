@@ -16,6 +16,12 @@ angular.module('aspirantfashion')
       templateUrl: 'templates/products.html',
       controller: 'productCtrl'
 })
+.state('catProducts', {
+      url: '/products?:category_id:categoryId',
+      templateUrl: 'templates/products.html',
+      controller: 'productCtrl'
+})
+
 .state('productdetails', {
     url: '/productdetails?:selected_product_id:productId',
       templateUrl: 'templates/productdetails.html',
