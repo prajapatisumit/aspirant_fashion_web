@@ -34,29 +34,39 @@
 
                             </div>
                             <div class="col-sm-6">
-                                <div class="box">
+                                <div class="box box_top">
                                     <form>
                                         <h4>{{selectedProductData.name}}</h4>
                                         <ul  ng-repeat = "product in selectedProductData.product_specification" >
                                           <li>{{product.name}} : {{product.value}}</li>
                                           </ul>
-                                        <p class="price_line">price : </p>
-                                        <p class="fa fa-inr price_line">  {{selectedProductData.price}}</p><br><br>
+                                        <div class="price_line">Price :
+                                        <div class="fa fa-inr"> {{selectedProductData.price}}</div></div>
+                                        <div class="delivery" ng-if="isSelectLocation">Delivery :<div>{{getuserLocation.city}},{{getuserLocation.state}}-{{getuserLocation.postalCode}}</div><a ng-click="addPinCodeShow()">Change</a>
+                                        </div>
+                                        <div class="delivery" ng-if="isEnterPin">Delivery :<div><input type="number" ng-model="pincode" class="zipCode_input"></input>
+                                                <button type="submit" class="btn btn-sm btn-template-primary" ng-click="addPinCode(pincode)" ><i class="fa fa-bolt" aria-hidden="true"></i>Change Address</button>
+                                            </div>
+                                        </div>
                                         <div class="sizes">
-                                            <h5 ng-if="selectedProductData.size.length > 1">Available sizes</h5>
+                                            <div ng-if="selectedProductData.size.length > 1">Available sizes :</div>
                                             <label class="size_align" for="size_s" ng-repeat="size in selectedProductData.size" ng-if="selectedProductData.size.length > 1">
                                                 <a >{{size}}</a>
                                                 <input type="radio" id="size" name="size" value="{{size}}" class="size-input">
                                             </label>
                                         </div>
+
+                                        <!-- <button type="button" class="btn btn-lg btn-template-primary">Primary colour button</button> -->
                                           <div class="buttons_addbuy">
-                                            <button type="submit" class="btn btn-template-main" ng-click="addToCart(selectedProductData)"><i class="fa fa-shopping-cart"></i> Add to cart</button>
-                                            <button type="submit" class="btn btn-template-main" ng-click=""><i class="fa fa-bolt" aria-hidden="true"></i> Buy Now</button>
+                                            <button type="submit" class="btn btn-lg btn-template-primary button_add" ng-click="addToCart(selectedProductData)"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+                                            <!-- <button type="submit" class="btn btn-template-main" ng-click="addToCart(selectedProductData)"><i class="fa fa-shopping-cart"></i> Add to cart</button> -->
+                                            <button type="submit" class="btn btn-lg btn-template-primary button_big" ><i class="fa fa-bolt" aria-hidden="true"></i> Buy Now</button>
                                             <button type="submit" class="btn btn-default" ng-if="isFavourite"  ng-click="deletefevorite(selectedProductData.$id)" style="color: red;"><i class="fa fa-heart-o"></i>
                                             </button>
                                             <button type="submit" class="btn btn-default" ng-if="!isFavourite" ng-click="setFavourite(selectedProductData)"  title="Add to wishlist"><i class="fa fa-heart-o"></i>
                                             </button>
                                           </div>
+
 
                                     </form>
                                 </div>

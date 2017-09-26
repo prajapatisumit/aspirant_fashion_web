@@ -57,13 +57,44 @@
   padding-top: 8px;
 }
 .price_line{
-  float: left;
   font-size: 20px;
+  padding-bottom: 1%;
+}
+.fa-rupee:before, .fa-inr:before{
+  font-size: 15px;
+  padding-left: 1px;
 }
 .size_align{
   float: left !important;
   padding-left: 10px;
+  padding-top: 7px;
 }
 .buttons_addbuy{
-  padding-top: 20%;
+  padding-top: 21%;
+}
+.button_big{
+  width: 40%;
+}
+.button_big:hover{
+  background-color: #555555;
+  border-color: #555555;
+}
+.box_top{
+  margin-top: -65px;
+}
+.button_add{
+  background-color: #555555;
+  border-color: #555555;
+}
+.button_add:hover{
+  background-color: #38a7bb;
+  border-color: #38a7bb;
+}
+.delivery{
+  font-size: 16px;
+  display: inline-flex;
+  padding-bottom: 1%;
+}
+.zipCode_input{
+  padding-bottom: 1%;
 }

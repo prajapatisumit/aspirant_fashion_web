@@ -111,10 +111,10 @@ angular.module('aspirantfashion')
               .then(function (response) {
                 $scope.categoryData = response;
                 // console.log("$scope.categoryData    : " + angular.toJson($scope.categoryData, ' '));
-                for(var i=0;i<$scope.categoryData.length;i++) {
-                    $scope.categoryData[i].sub_category = $firebaseArray(firebase.database().ref('subcategory').orderByChild('categoryid')
-                        .equalTo($scope.categoryData[i].$id));
-                }
+                // for(var i=0;i<$scope.categoryData.length;i++) {
+                //     $scope.categoryData[i].sub_category = $firebaseArray(firebase.database().ref('subcategory').orderByChild('categoryid')
+                //         .equalTo($scope.categoryData[i].$id));
+                // }
               });
       };
       $scope.goCategoryWiseAllproducts = function(categoryId){

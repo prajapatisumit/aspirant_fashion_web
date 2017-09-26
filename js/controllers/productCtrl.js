@@ -10,10 +10,10 @@ angular.module('aspirantfashion')
           .then(function (response) {
             $scope.sidebarData = response;
             // console.log("$scope.sidebarData    : " + angular.toJson($scope.sidebarData, ' '));
-            // for(var i=0;i<$scope.sidebarData.length;i++) {
-            //     $scope.sidebarData[i].sub_category = $firebaseArray(firebase.database().ref('subcategory').orderByChild('categoryid')
-            //         .equalTo($scope.sidebarData[i].$id));
-            // }
+            for(var i=0;i<$scope.sidebarData.length;i++) {
+                $scope.sidebarData[i].sub_category = $firebaseArray(firebase.database().ref('subcategory').orderByChild('categoryid')
+                    .equalTo($scope.sidebarData[i].$id));
+            }
           });
   };
 // $scope.loadAllProducts = function(){};
@@ -23,8 +23,20 @@ $scope.loadSelectedProd = function () {
       categoryObj.$loaded()
         .then(function (response) {
           $scope.categoryData = response;
-        console.log("$scope.categoryData    : " + angular.toJson($scope.categoryData, ' '));
+          allProducts = response;
+        // console.log("$scope.categoryData    : " + angular.toJson($scope.categoryData, ' '));
         });
+};
+$scope.getProductById= function (subcategoryId) {
+  //  console.log("subcategory_id : " + angular.toJson(subcategoryId,''));
+    categoryDataRef = firebase.database().ref('product').orderByChild('subcategory').equalTo(subcategoryId);
+    categoryDataObj = $firebaseArray(categoryDataRef);
+        categoryDataObj.$loaded()
+          .then(function (response) {
+            $scope.categoryData = response;
+        // console.log("$scope.categoryData    : " + angular.toJson($scope.categoryData, ' '));
+          });
+   $state.go('products', { 'subcategory_id': subcategoryId });
 };
 $scope.loadBrand = function () {
       brandDataRef = firebase.database().ref('brand').orderByChild('category');
@@ -51,13 +63,16 @@ $scope.loadBrand = function () {
       }
    console.log("$scope.selection" + angular.toJson($scope.selection ,' '));
                 var tempArray = [];
-
            for(var j=0; j<$scope.selection.length; j++){
+              console.log("yes comes here..");
               //  if(!!$scope.selection[j].is_selected && $scope.selection[j].is_selected === true) {
               //    doFilter = true;
+                  console.log("allProducts : " + angular.toJson(allProducts , ' '));
                    for(var i=0; i< allProducts.length; i++) {
+
                        if(allProducts[i].brand === $scope.selection[j].name) {
                          tempArray.push(allProducts[i]);
+                          console.log("tempArray : " + angular.toJson(tempArray , ' '));
                        }
                   //  }
            }
@@ -69,6 +84,7 @@ $scope.loadBrand = function () {
        else {
         $scope.categoryData = allProducts;
           }
+          console.log("$scope.categoryData : " + angular.toJson($scope.categoryData , ' '));
   };
   $scope.goHomepage= function () {
     $state.go('home');
@@ -77,10 +93,6 @@ $scope.loadBrand = function () {
     console.log('its working'+selectedProId);
     $state.go('productdetails',{'selected_product_id':selectedProId});
   };
-  $scope.goCategoryWiseAllproducts = function(categoryId){
-      // console.log('its working'+categoryId);
-        $state.go('catProducts',{'category_id':categoryId});
-  }
 $scope.loadBrand();
 $scope.loadSidebar();
     if(!!$stateParams.category_id) {

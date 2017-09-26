@@ -1666,7 +1666,7 @@ fieldset[disabled] .btn-template-primary.active {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 20px 0;
+  /*padding: 20px 0;*/
   border-left: none;
   border-right: none;
 }
@@ -2325,9 +2325,12 @@ fieldset[disabled] .btn-template-primary.active {
 }
 #productMain {
   margin-bottom: 30px;
+
 }
 #productMain .sizes {
   /*text-align: center;*/
+  width: 100%;
+  float: left;
 }
 #productMain .sizes h3 {
   font-weight: 700;
@@ -2337,8 +2340,8 @@ fieldset[disabled] .btn-template-primary.active {
 }
 #productMain .sizes a {
   display: inline-block;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 40px;
   background: #ccc;
   line-height: 40px;
@@ -2346,6 +2349,7 @@ fieldset[disabled] .btn-template-primary.active {
   text-align: center;
   text-decoration: none;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
+  padding-top: 4px;
 }
 #productMain .sizes a.active,
 #productMain .sizes a:hover {

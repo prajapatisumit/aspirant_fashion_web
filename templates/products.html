@@ -7,8 +7,8 @@
                     </div>
                     <div class="col-md-5">
                         <ul class="breadcrumb">
-                            <li><a ng-click="goHomepage()">Home</a>
-                            </li>
+                              <li><a ng-click="goHomepage()">Home</a>
+                              </li>
                             <li>All Products</li>
                         </ul>
 
@@ -30,12 +30,12 @@
                                   </div>
                                   <div class="panel-body">
                                       <ul class="nav nav-pills nav-stacked category-menu">
-                                          <li ng-repeat="category in sidebarData" ng-click="goCategoryWiseAllproducts(category.$id)">
+                                          <li ng-repeat="category in sidebarData">
                                               <a>{{category.name}}</a>
-                                              <!-- <ul>
+                                              <ul>
                                                 <li ng-repeat="subcat in category.sub_category"  ><a ng-click="getProductById(subcat.$id)" ng-class="{selectedSidebarTab:subcat.$id === selectedId}" >{{subcat.name}}</a>
                                                   </li>
-                                              </ul> -->
+                                              </ul>
                                           </li>
                                       </ul>
                                   </div>
