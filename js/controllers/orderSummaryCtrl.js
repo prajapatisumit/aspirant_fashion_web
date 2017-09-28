@@ -1,17 +1,17 @@
 angular.module('aspirantfashion')
- .controller("orderSummaryCtrl", function($scope,$state,$firebaseObject,sharedCartService) {
+ .controller("orderSummaryCtrl", function($scope,$state,$firebaseObject,sharedCartService,SessionService ) {
    firebase.auth().onAuthStateChanged(function(user) {
      if (user) {
        $scope.user = user;
-       console.log("user : " + angular.toJson(user , ' '));
+      //  console.log("user : " + angular.toJson(user , ' '));
        $scope.cart=sharedCartService.cart_items;  // Loads users cart
-      console.log("$scope.cart "+ angular.toJson($scope.cart , ' '));
+      // console.log("$scope.cart "+ angular.toJson($scope.cart , ' '));
          selectedCartRef = firebase.database().ref('cart/' + $scope.user.uid);
              cartObj = $firebaseObject(selectedCartRef);
              cartObj.$loaded()
                .then(function (response) {
                  $scope.selectedCartData = response;
-            console.log("$scope.selectedCartData"+ angular.toJson($scope.selectedCartData));
+            // console.log("$scope.selectedCartData"+ angular.toJson($scope.selectedCartData));
                });
 
        // console.log("$scope.cart : " + angular.toJson($scope.cart , ' '));
@@ -27,5 +27,7 @@ angular.module('aspirantfashion')
        };
      }
    });
+$scope.userAddress = SessionService.getUserDeliveryLocation();
+console.log("$scope.userAddress"+ angular.toJson($scope.userAddress,' '));
 
 });

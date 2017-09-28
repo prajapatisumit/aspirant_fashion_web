@@ -19,7 +19,14 @@ angular.module('aspirantfashion')
       Session.userLocation = JSON.stringify(data);
       localStorage.setItem("userLocation", Session.userLocation);
     },
-
+    getUserDeliveryLocation: function() {
+      Session.userAddress = localStorage.getItem("userAddress");
+      return JSON.parse(Session.userAddress);
+    },
+    setUserDeliveryLocation: function(data) {
+      Session.userAddress = JSON.stringify(data);
+      localStorage.setItem("userAddress", Session.userAddress);
+    },
     isLoggedIn: function() {
       if (!!Session.getUser()) {
         return true;

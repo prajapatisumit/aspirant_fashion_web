@@ -6,7 +6,7 @@ function header() {
     restrict: 'EA',
     replace: true,
     scope: {},
-    controller: function($scope,$state,$firebaseArray,$uibModal,$stateParams,$log,sharedCartService,SessionService,fireBaseData) {
+    controller: function($scope,$state,$firebaseArray,$uibModal,$stateParams,$log,sharedCartService,$firebaseObject,SessionService,fireBaseData) {
       $scope.goSignup= function () {
         console.log('its working');
         $state.go('signup');
@@ -51,9 +51,16 @@ function header() {
             }
             return $scope.total_qty;
           };
-
+          //We dont need the else part because indexCtrl takes care of it
+          loginUserRef = firebase.database().ref('users/' + $scope.user.uid);
+                   loginObj = $firebaseObject(loginUserRef);
+                   loginObj.$loaded()
+                     .then(function (response) {
+                    $scope.user = response;
+                    //  console.log("$scope.userData :"+ angular.toJson(  $scope.user,' '));
+                  });
         }
-        //We dont need the else part because indexCtrl takes care of it
+
       });
 
       $scope.loadCategory = function () {

@@ -8,9 +8,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     $scope.loadFavourite();
 }
 });
-$(".heart.fa").click(function() {
-  $(this).toggleClass("fa-heart fa-heart-o");
-});
 $scope.loadSelectedProd = function () {
   selectedProductRef = firebase.database().ref('product/' + $scope.selectedProId);
       productObj = $firebaseObject(selectedProductRef);
@@ -274,5 +271,8 @@ $scope.gohomepage= function () {
      $scope.addPinCodeShow = function () {
        $scope.isEnterPin = true;
        $scope.isSelectLocation = false;
+     };
+     $scope.goForCheckout= function () {
+       $state.go('usercheckout');
      };
 });

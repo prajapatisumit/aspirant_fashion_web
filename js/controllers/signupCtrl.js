@@ -11,7 +11,7 @@ angular.module('aspirantfashion')
                 console.log("response data : " + angular.toJson(response, ' '));
 
                 firebase.database().ref('users/' + response.uid).set({
-                    name: userdata.name,
+                    displayName: userdata.name,
                     email: userdata.email
                 });
             }).catch(function(error) {

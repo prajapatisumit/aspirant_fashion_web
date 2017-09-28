@@ -67,11 +67,11 @@
                           </div> -->
                           <div class="col-sm-12 ">
                               <h3 class="text-uppercase">Shipping address</h3>
-                                <p>{{selectedCartData.shippingAddress.firstName}} {{selectedCartData.shippingAddress.lastName}}
-                                  <br>{{selectedCartData.shippingAddress.Street}} {{selectedCartData.shippingAddress.Address}}
-                                  <br>{{selectedCartData.shippingAddress.City}} {{selectedCartData.shippingAddress.zip}}
-                                  <br>{{selectedCartData.shippingAddress.email}}
-                                  <br>{{selectedCartData.shippingAddress.mobileNumber}}
+                                <p>
+                                  {{userAddress.name}}
+                                  <br>{{userAddress.area}} {{userAddress.city}}
+                                  <br>{{userAddress.state}}
+                                  <br>{{userAddress.phoneNumber}}
                                 </p>
                           </div>
                       </div>

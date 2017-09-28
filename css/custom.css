@@ -98,3 +98,33 @@
 .zipCode_input{
   padding-bottom: 1%;
 }
+.form_margintop{
+  margin-top: 3%;
+}
+.btn_address{
+  margin-left:3%;
+  margin-bottom: 2%;
+  background-color: #555555;
+  border-color: #38a7bb;
+}
+.btn_address:hover{
+  background-color: #555555;
+  border-color: #38a7bb;
+}
+.address_bottomspace{
+  margin-bottom: 2%;
+}
+.edit_button{
+    background-color: #555555;
+    border-color: #38a7bb;
+}
+.edit_button:hover{
+  background-color: #555555;
+  border-color: #38a7bb;
+}
+.btn_close{
+  margin-left: 2% !important;
+}
+.box_shipping{
+  margin-bottom: 4%;
+}

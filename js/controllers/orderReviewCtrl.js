@@ -9,7 +9,7 @@ angular.module('aspirantfashion')
    firebase.auth().onAuthStateChanged(function(user) {
      if (user) {
        $scope.user = user;
-       console.log("user : " + angular.toJson(user , ' '));
+      //  console.log("user : " + angular.toJson(user , ' '));
        $scope.cart=sharedCartService.cart_items;  // Loads users cart
       //  console.log("$scope.cart "+ angular.toJson($scope.cart , ' '));
          selectedCartRef = firebase.database().ref('cart/' + $scope.user.uid + '/cartList');
