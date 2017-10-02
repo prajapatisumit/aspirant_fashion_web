@@ -6,7 +6,7 @@ function header() {
     restrict: 'EA',
     replace: true,
     scope: {},
-    controller: function($scope,$state,$firebaseArray,$uibModal,$stateParams,$log,sharedCartService,$firebaseObject,SessionService,fireBaseData) {
+    controller: function($scope,$state,$firebaseArray,$uibModal,$stateParams,$log,sharedCartService,$firebaseObject,SessionService,fireBaseData,elasticSearchService) {
       $scope.goSignup= function () {
         console.log('its working');
         $state.go('signup');
@@ -86,6 +86,15 @@ function header() {
               console.log('error' + error);
           });
       };
+
+      //////for elastic serch functionality :
+        $scope.serch =function () {
+            elasticSearchService.search().then(function(data) {
+              console.log(' All search data comes : ' + angular.toJson(data, ''));
+              $scope.searchResult = data;
+            });
+        };
+      /////end of elastic search functionality///
 
     }
   };
