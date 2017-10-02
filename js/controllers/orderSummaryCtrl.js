@@ -11,10 +11,10 @@ angular.module('aspirantfashion')
              cartObj.$loaded()
                .then(function (response) {
                  $scope.selectedCartData = response;
-            // console.log("$scope.selectedCartData"+ angular.toJson($scope.selectedCartData));
+            console.log("$scope.selectedCartData"+ angular.toJson($scope.selectedCartData));
                });
 
-       // console.log("$scope.cart : " + angular.toJson($scope.cart , ' '));
+       console.log("$scope.cart : " + angular.toJson($scope.cart , ' '));
        $scope.get_qty = function() {
          $scope.total_qty=0;
          $scope.total_amount=0;

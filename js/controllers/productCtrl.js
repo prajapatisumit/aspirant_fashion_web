@@ -1,5 +1,5 @@
 angular.module('aspirantfashion')
- .controller("productCtrl", function($scope,$stateParams,$firebaseArray,$state) {
+ .controller("productCtrl", function($scope,$stateParams,$firebaseArray,$state,$anchorScroll) {
      var allProducts = [];
   $scope.selectedId = $stateParams.subcategory_id;
   // console.log("$scope.selectedId : " + $scope.selectedId);
@@ -24,6 +24,7 @@ $scope.loadSelectedProd = function () {
         .then(function (response) {
           $scope.categoryData = response;
           allProducts = response;
+          $anchorScroll();
         // console.log("$scope.categoryData    : " + angular.toJson($scope.categoryData, ' '));
         });
 };

@@ -1,5 +1,5 @@
 angular.module('aspirantfashion')
-.controller("homeCtrl", function($scope,$state,$rootScope,SessionService,$rootScope,$firebaseArray) {
+.controller("homeCtrl", function($scope,$state,$rootScope,SessionService,$rootScope,$firebaseArray,$anchorScroll) {
   // console.log('homepage is working');
       if (!!$rootScope.userLog) {
         $scope.user = $rootScope.userLog;
@@ -110,6 +110,7 @@ angular.module('aspirantfashion')
             categoryObj.$loaded()
               .then(function (response) {
                 $scope.categoryData = response;
+                $anchorScroll();
                 // console.log("$scope.categoryData    : " + angular.toJson($scope.categoryData, ' '));
                 // for(var i=0;i<$scope.categoryData.length;i++) {
                 //     $scope.categoryData[i].sub_category = $firebaseArray(firebase.database().ref('subcategory').orderByChild('categoryid')
@@ -118,12 +119,14 @@ angular.module('aspirantfashion')
               });
       };
       $scope.goCategoryWiseAllproducts = function(categoryId){
-          console.log('its working'+categoryId);
+            console.log('its working'+categoryId);
+            $anchorScroll();
             $state.go('catProducts',{'category_id':categoryId});
       }
 
       $scope.goProductpage= function (selectedProId) {
         // console.log('its working'+selectedProId);
+        $anchorScroll();
         $state.go('productdetails',{'selected_product_id':selectedProId});
       };
 $scope.loadCategory();

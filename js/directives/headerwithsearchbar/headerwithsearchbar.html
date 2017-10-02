@@ -1,0 +1,65 @@
+<div>
+<div class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+      <div class="container row1">
+             <div class="row">
+              <div class="col-sm-2">
+                  <img class="logo_size"src="img/aspirantimgs/aspirant_fashion.png" ng-click="gohomepage()" alt="Aspirant fashion logo" >
+                  <div class="navbar-buttons">
+                      <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                          <span class="sr-only">Toggle navigation</span>
+                          <i class="fa fa-align-justify"></i>
+                      </button>
+                  </div>
+              </div>
+              <div class="flipkart-navbar-search col-sm-8 col-xs-11">
+                      <input class="flipkart-navbar-input col-xs-11" type="" placeholder="Search for Products, Brands and more" name="">
+                        <button type="button" class="btn  flipkart-navbar-button col-xs-1">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                      </button>
+              </div>
+              <div class="cart col-sm-2">
+                  <a class="cart-button" ng-click="goCartPage()">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                      <span>CART</span>
+                      <span class="item-number " ng-if="isLogin === true">{{get_qty()}}</span>
+                      <span class="item-number" ng-if="!isLogin">0</span>
+                  </a>
+              </div>
+          </div>
+        </div>
+         <div class="container nav_top">
+              <div class="navbar-collapse collapse" id="navigation">
+                  <ul class="nav navbar-nav">
+                      <li class="dropdown use-yamm yamm-fw" ng-repeat="category in categoryData">
+                          <a class="dropdown-toggle" data-toggle="dropdown">{{category.name}} <b class="caret"></b></a>
+                          <ul class="dropdown-menu">
+                            <li>
+                              <div class="yamm-content">
+                                  <div class="row">
+                                    <div class="col-sm-6">
+                                       <h5>Aspirant Fashion</h5>
+                                       <ul>
+                                           <li ng-repeat="subcat in category.sub_category"><a ng-click="goProducts(subcat.$id)">{{subcat.name}}</a>
+                                           </li>
+                                       </ul>
+                                   </div>
+                                      <div class="col-sm-3 catRight">
+                                          <img ng-src="{{category.image }}" class="img-responsive hidden-xs fixedSizeCatimg" alt="">
+                                      </div>
+                                    <div class="col-sm-3">
+                                            <!-- <h5>Shortcodes</h5> -->
+
+                                        </div>
+
+                                  </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+              </div>
+          </div>
+          </div>
+      </div>
+    </div>

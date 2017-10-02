@@ -3,6 +3,7 @@ angular.module('aspirantfashion')
    $scope.goCartPage= function () {
      $state.go('cartdetails');
    };
+
    $scope.goOrderReviewPage= function () {
      $state.go('orderreview');
    };
@@ -19,10 +20,24 @@ angular.module('aspirantfashion')
    };
    firebase.auth().onAuthStateChanged(function(user) {
            if (user) {
-             $scope.addresses= $firebaseArray( fireBaseData.refUser().child(user.uid).child("address") );
-             $scope.user=user;
-             // console.log("$scope.user_info : " + angular.toJson($scope.user_info , ' '));
-           }else if (!!sessionUser.uid) {
+             selectedaddressesRef = fireBaseData.refUser().child(user.uid).child("address");
+                 addressesObj = $firebaseArray(selectedaddressesRef);
+                 addressesObj.$loaded()
+                   .then(function (response) {
+                     $scope.addresses = response;
+                    //  console.log("$scope.addresses"+ angular.toJson($scope.addresses,' '));
+                     $scope.user=user;
+                     if ($scope.addresses.length <=0) {
+                         $scope.isDivShow = true;
+                     }
+                     else{
+                       $scope.isDivShow = false;
+                     }
+                    //  console.log("$scope.addresses.length : " + angular.toJson($scope.addresses.length  , ' '));
+                    $scope.selected_price_option = $scope.addresses[0];
+                      });
+           }
+           else if (!!sessionUser.uid) {
              $scope.addresses= $firebaseArray( fireBaseData.refUser().child(sessionUser.uid).child("address") );
              $scope.user=sessionUser;
            }
@@ -68,8 +83,10 @@ angular.module('aspirantfashion')
           $scope.isDivShow = false;
       }
       $scope.selectAddress = function (selectedAddress) {
-           console.log("selectedAddress : " + angular.toJson(selectedAddress , ' '));
+          
+            console.log("selectedAddress : " + angular.toJson(selectedAddress , ' '));
           SessionService.setUserDeliveryLocation(selectedAddress);
+
       };
   //  $scope.validate = function(addressObj) {
   //          // console.log("addressObj : " + angular.toJson(addressObj , ' '));

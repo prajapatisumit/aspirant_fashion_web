@@ -128,3 +128,9 @@
 .box_shipping{
   margin-bottom: 4%;
 }
+.flipkart-navbar-button:hover{
+  color: white !important;
+}
+.catImageset{
+  cursor: pointer;
+}
