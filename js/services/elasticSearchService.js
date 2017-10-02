@@ -18,7 +18,7 @@ angular.module('aspirantfashion')
     var defer = $q.defer();
     // var url  = AppSettings.Url;
     // console.log("url.... : " + url);
-    var url  = AppSettings.Url + '/api/users';//'api/users?user_id='+$firebaseAuth().$getAuth().uid;
+    var url  = AppSettings.Url + '/'; //'/api/users';//'api/users?user_id='+$firebaseAuth().$getAuth().uid;
     console.log("url new : " + url);
     var data = {};
     data.user_id = $firebaseAuth().$getAuth().uid;
