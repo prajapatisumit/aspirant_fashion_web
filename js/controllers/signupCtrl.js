@@ -1,5 +1,5 @@
 angular.module('aspirantfashion')
-.controller('signupCtrl', function($scope, $state, $rootScope,$firebaseArray, $firebaseObject) {
+.controller('signupCtrl', function($scope, $state, $rootScope,$firebaseArray, $firebaseObject, SessionService) {
         $scope.initPage = function() {
             $scope.loginUser = {};
 
@@ -59,6 +59,7 @@ angular.module('aspirantfashion')
 
                                 }
                                 $rootScope.userLog = obj;
+                                SessionService.setUser(obj);
                                 console.log("$rootScope.user when user alredy signin with facebook..: " + angular.toJson($rootScope.userLog, ' '));
                             });
                             // sharedUtils.hideLoading();
@@ -74,6 +75,7 @@ angular.module('aspirantfashion')
 
                             }
                             $rootScope.userLog = userObj;
+                            SessionService.setUser(obj);
                             console.log("$rootScope.userLog when new facebook user login : " + angular.toJson($rootScope.userLog, ' '));
                             var ref = firebase.database().ref('users/' + user.uid);
                             ref.set(userObj).then(function(snapshot) {

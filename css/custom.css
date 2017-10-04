@@ -134,3 +134,6 @@
 .catImageset{
   cursor: pointer;
 }
+ .bgchange{
+  background-color: #555555;
+}

@@ -20,28 +20,26 @@ angular.module('aspirantfashion')
   });
   //Add to Cart
   cart.add = function(item) {
-    // console.log("item at service...: " + angular.toJson(item , ' '));
+  // console.log("item at service...: " + angular.toJson(item , ' '));
     // check if item is already added or not
-    var guestUser = SessionService.getUser();
-      console.log("guestUser at service : " + angular.toJson(guestUser , ' '));
-    if (!!guestUser && guestUser.uid) {
-      ////for guest user :
-      uid = guestUser.uid;
-      console.log("uid at else part at service : " + uid);
-      cart.cart_items = $firebaseArray(fireBaseData.refCart().child(uid).child('cartList'));
-    }
+    // var guestUser = SessionService.getUser();
+    //   // console.log("guestUser at service : " + angular.toJson(guestUser , ' '));
+    // if (!!guestUser && guestUser.uid) {
+    //   ////for guest user :
+    //   uid = guestUser.uid;
+    //   console.log("uid at else part at service : " + uid);
+    //   cart.cart_items = $firebaseArray(fireBaseData.refCart().child(uid).child('cartList'));
+    // }
     fireBaseData.refCart().child(uid).once("value", function(snapshot) {
-
-      if( snapshot.hasChild(item.$id) == true ){
-
+      console.log(snapshot.val());
+      if(snapshot.hasChild(item.$id) == true ){
         //if item is already in the cart
         var currentQty = snapshot.child(item.$id).val().item_qty;
-          console.log("currentQty :  " + angular.toJson(currentQty , ' ') );
-        fireBaseData.refCart().child(uid).child('cartList').child(item.$id).update({   // update
+        fireBaseData.refCart().child(uid).child(item.$id).update({   // update
           item_qty : currentQty+1
         });
-
-      }else{
+      }
+      else{
         // console.log("item : " + angular.toJson(item , ' '));
         //if item is new in the cart
         fireBaseData.refCart().child(uid).child('cartList').child(item.$id).set({    // set
@@ -78,8 +76,6 @@ angular.module('aspirantfashion')
         }else {
             IonicPopupService.alert("Oops", "Sorry more stock is not available.");
         }
-
-
       }else{
           console.log("Item id is not available");
         //pop error

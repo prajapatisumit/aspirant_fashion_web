@@ -3,9 +3,13 @@ angular.module('aspirantfashion')
 
   var Session = {
     user: null,
+    userProduct: null,
     getUser: function() {
       Session.user = localStorage.getItem("user");
-      return JSON.parse(Session.user);
+      if(!!Session.user && Session.user !=="undefined")
+        return JSON.parse(Session.user);
+      else
+        return "";
     },
     setUser: function(data) {
       Session.user = JSON.stringify(data);
@@ -26,6 +30,14 @@ angular.module('aspirantfashion')
     setUserDeliveryLocation: function(data) {
       Session.userAddress = JSON.stringify(data);
       localStorage.setItem("userAddress", Session.userAddress);
+    },
+    getUserProduct: function() {
+      Session.userProduct = localStorage.getItem("userProduct");
+      return JSON.parse(Session.userProduct);
+    },
+    setUserProduct: function(data) {
+      Session.userProduct = data;
+      localStorage.setItem("userProduct", Session.userProduct);
     },
     isLoggedIn: function() {
       if (!!Session.getUser()) {

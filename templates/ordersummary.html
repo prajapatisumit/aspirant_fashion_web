@@ -22,11 +22,25 @@
                                       <th>Total</th>
                                   </tr>
                               </thead>
-                              <tbody ng-repeat="ordersummarydata in selectedCartData.cartList">
+                              <tbody ng-if="!!selectedProId">
                                   <tr>
                                       <td>
                                           <a href="#">
-                                              <img ng-src="{{ordersummarydata.item_image}}" alt="White Blouse Armani">
+                                              <img ng-src="{{selectedCartData.item_image}}" >
+                                          </a>
+                                      </td>
+                                      <td><a>{{selectedCartData.item_name}}</a>
+                                      </td>
+                                      <td>{{selectedCartData.item_qty}}</td>
+                                      <td>{{selectedCartData.item_price}}</td>
+                                      <td>{{selectedCartData.item_qty * selectedCartData.item_price }}</td>
+                                  </tr>
+                              </tbody>
+                              <tbody  ng-if="!selectedProId" ng-repeat="ordersummarydata in selectedCartData">
+                                  <tr>
+                                      <td>
+                                          <a href="#">
+                                              <img ng-src="{{ordersummarydata.item_image}}" >
                                           </a>
                                       </td>
                                       <td><a>{{ordersummarydata.item_name}}</a>

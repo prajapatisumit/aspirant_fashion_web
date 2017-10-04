@@ -280,7 +280,7 @@ ul.list-style-none {
 }
 #top .login a {
   font-size: 12px;
-  color: #148ff1;
+  color: #38a7bb;
   margin-right: 15px;
   text-decoration: none;
   text-transform: uppercase;
@@ -2449,7 +2449,7 @@ fieldset[disabled] .btn-template-primary.active {
 #checkout .table tbody tr td,
 #basket .table tbody tr td,
 #customer-order .table tbody tr td {
-  vertical-align: middle;
+  /*vertical-align: middle;*/
 }
 #checkout .table tbody tr td input,
 #basket .table tbody tr td input,
@@ -3651,6 +3651,7 @@ display: none;
 }
 .liststylehide{
   list-style-type: none;
+  padding-left: 35px;
 }
 .wishlist{
   text-align: left;

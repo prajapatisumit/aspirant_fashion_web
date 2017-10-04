@@ -52,13 +52,18 @@ angular.module('aspirantfashion')
       templateUrl: 'templates/usercheckout.html',
       controller: 'userCheckOutCtrl'
 })
-.state('orderreview', {
-    url: '/orderreview',
-      templateUrl: 'templates/orderreview.html',
-      controller: 'orderReviewCtrl'
+.state('checkoutwithbuy', {
+    url: '/usercheckout?:selected_buyProduct_id',
+      templateUrl: 'templates/usercheckout.html',
+      controller: 'userCheckOutCtrl'
 })
+// .state('orderreview', {
+//     url: '/orderreview',
+//       templateUrl: 'templates/orderreview.html',
+//       controller: 'orderReviewCtrl'
+// })
 .state('ordersummary', {
-    url: '/ordersummary',
+    url: '/ordersummary:selected_ProductOrderSummary_id',
       templateUrl: 'templates/ordersummary.html',
       controller: 'orderSummaryCtrl'
 })

@@ -55,7 +55,7 @@
                                         <td class="fa fa-inr">{{cartproduct.item_price}} </td>
                                         <!-- <td>$0.00</td> -->
                                         <td>{{cartproduct.item_qty * cartproduct.item_price }}</td>
-                                        <td><a ng-click=" "><i class="fa fa-trash-o"></i></a>
+                                        <td><a ng-click="removeFromCart(cartproduct.$id)"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
 
@@ -63,7 +63,7 @@
                                 <tfoot>
                                     <tr>
                                         <th colspan="5">Total</th>
-                                        <th colspan="2"><td>{{total_amount}}</th>
+                                        <th colspan="2" class="fa fa-inr">{{total_amount}}</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -157,7 +157,7 @@
                             <tbody>
                                 <tr>
                                     <td>Order subtotal</td>
-                                    <th>$446.00</th>
+                                    <th class="fa fa-inr">{{total_amount}}</th>
                                 </tr>
                                 <tr>
                                     <td>Shipping and handling</td>

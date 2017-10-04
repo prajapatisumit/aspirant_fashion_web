@@ -34,6 +34,12 @@ angular.module('aspirantfashion')
        console.log("working");
        $state.reload();
      };
+     $scope.removeFromCart=function(c_id){
+      var deleteproduct = $window.confirm('Are you sure you want to delete the product?');
+      if(deleteproduct){
+        sharedCartService.drop(c_id);
+      }
+   };
      $scope.goForCheckout= function () {
        $state.go('usercheckout');
      };

@@ -20,7 +20,7 @@ $scope.loadSelectedProd = function () {
 $scope.loadSelectedProd();
 $scope.addToCart = function(item){
 // IonicPopupService.alert("Item added to cart");
-// console.log("item : " + angular.toJson(item , ' '));
+console.log("item : " + angular.toJson(item , ' '));
     sharedCartService.add(item);
  };
 
@@ -142,8 +142,8 @@ $scope.gohomepage= function () {
            //full address data
 
              $scope.userCity = $scope.city.long_name;
-             $scope.uaerState = $scope.state.long_name;
-             $scope.uaerCountry = $scope.county.long_name;
+             $scope.userState = $scope.state.long_name;
+             $scope.userCountry = $scope.county.long_name;
              $scope.userPostalCode = $scope.postalCode.long_name;
              $scope.userAddressByZip = {
                        city : $scope.city.long_name,
@@ -272,7 +272,10 @@ $scope.gohomepage= function () {
        $scope.isEnterPin = true;
        $scope.isSelectLocation = false;
      };
-     $scope.goForCheckout= function () {
-       $state.go('usercheckout');
+     $scope.goForCheckout = function (selectedProduct) {
+        //  console.log("selectedProduct..."+ angular.toJson(selectedProduct));
+         SessionService.setUserProduct(selectedProduct);
+         console.log('selectedProduct.$id : ' + selectedProduct.$id);
+       $state.go('checkoutwithbuy',{'selected_buyProduct_id':selectedProduct.$id});
      };
 });

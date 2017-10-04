@@ -1,5 +1,5 @@
 angular.module('aspirantfashion')
- .controller("userCheckOutCtrl", function($scope,$state,$firebaseObject,$firebaseArray,fireBaseData,sharedCartService,SessionService) {
+ .controller("userCheckOutCtrl", function($scope,$state,$firebaseObject,$firebaseArray,fireBaseData,sharedCartService,SessionService,$stateParams) {
    $scope.goCartPage= function () {
      $state.go('cartdetails');
    };
@@ -83,7 +83,6 @@ angular.module('aspirantfashion')
           $scope.isDivShow = false;
       }
       $scope.selectAddress = function (selectedAddress) {
-          
             console.log("selectedAddress : " + angular.toJson(selectedAddress , ' '));
           SessionService.setUserDeliveryLocation(selectedAddress);
 
@@ -108,4 +107,54 @@ angular.module('aspirantfashion')
   //          return false;
   //        }
   //      };
-   });
+  $scope.goAddress= function() {
+    $state.go('usercheckout');
+  }
+  $scope.goOrderSummary= function(selectedProduct) {
+       console.log("selectedProduct..."+ angular.toJson(selectedProduct));
+        SessionService.setUserProduct(selectedProduct);
+        console.log('selectedProduct.$id : ' + selectedProduct.$id);
+      $state.go('ordersummary',{'selected_ProductOrderSummary_id':selectedProduct.$id});
+  };
+    $scope.isAddress = true;
+    $scope.isOrder = false;
+    $scope.showorder= function () {
+        $scope.isAddress = false;
+        $scope.isOrder = true;
+    };
+    $scope.showAddress = function () {
+      $scope.isOrder = false;
+      $scope.isAddress = true;
+    }
+ var user = SessionService.getUser();
+console.log("user : " + angular.toJson(user,' '));
+$scope.selectedProId = $stateParams.selected_buyProduct_id;
+if(!!$scope.selectedProId){
+  selectedCartRef = firebase.database().ref('cart/' + user.uid + '/cartList/' + $scope.selectedProId);
+      cartObj = $firebaseObject(selectedCartRef);
+      cartObj.$loaded()
+        .then(function (response) {
+          $scope.selectedCartData = response;
+    console.log("$scope.selectedCartData"+ angular.toJson($scope.selectedCartData));
+        });
+} else {
+   selectedCartRef = firebase.database().ref('cart/' + user.uid + '/cartList');
+   cartObj = $firebaseArray(selectedCartRef);
+   cartObj.$loaded()
+     .then(function (response) {
+       $scope.selectedCartData = response;
+  console.log("$scope.selectedCartData"+ angular.toJson($scope.selectedCartData));
+     });
+     $scope.cart=sharedCartService.cart_items;
+ }
+  $scope.get_qty = function() {
+    $scope.total_qty=0;
+    $scope.total_amount=0;
+    for (var i = 0; i < sharedCartService.cart_items.length; i++) {
+      $scope.total_qty += sharedCartService.cart_items[i].item_qty;
+      $scope.total_amount += (sharedCartService.cart_items[i].item_qty * sharedCartService.cart_items[i].item_price);
+      $scope.total_weight += (sharedCartService.cart_items[i].item_qty * sharedCartService.cart_items[i].item_weight);
+    }
+    return $scope.total_amount;
+  };
+});
