@@ -12,7 +12,12 @@ function header() {
         $state.go('signup');
       };
       $scope.goCartPage= function () {
-        $state.go('cartdetails');
+          var qty = $scope.total_qty;
+        if (!!qty) {
+          $state.go('cartdetails');
+        }else {
+          $state.go('emptycart');
+        }
       };
       $scope.gohomepage= function () {
         console.log('its working');
@@ -59,8 +64,7 @@ function header() {
                     $scope.user = response;
                     //  console.log("$scope.userData :"+ angular.toJson(  $scope.user,' '));
                   });
-        }
-
+                }
       });
 
       $scope.loadCategory = function () {

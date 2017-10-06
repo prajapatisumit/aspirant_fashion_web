@@ -67,6 +67,11 @@ angular.module('aspirantfashion')
       templateUrl: 'templates/ordersummary.html',
       controller: 'orderSummaryCtrl'
 })
+.state('emptycart', {
+    url: '/emptycart',
+      templateUrl: 'templates/emptycart.html',
+      controller: 'emptyCartCtrl'
+})
   // $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/home');
 });

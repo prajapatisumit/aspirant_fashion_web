@@ -30,18 +30,20 @@ angular.module('aspirantfashion')
     //   console.log("uid at else part at service : " + uid);
     //   cart.cart_items = $firebaseArray(fireBaseData.refCart().child(uid).child('cartList'));
     // }
-    fireBaseData.refCart().child(uid).once("value", function(snapshot) {
-      console.log(snapshot.val());
+    fireBaseData.refCart().child(uid).child('cartList').once("value", function(snapshot) {
+      // console.log("snapshot.val() : " + angular.toJson(snapshot.val() , ' '));
       if(snapshot.hasChild(item.$id) == true ){
         //if item is already in the cart
         var currentQty = snapshot.child(item.$id).val().item_qty;
-        fireBaseData.refCart().child(uid).child(item.$id).update({   // update
+        fireBaseData.refCart().child(uid).child('cartList').child(item.$id).update({   // update
           item_qty : currentQty+1
         });
       }
       else{
+        console.log("else is calling...");
         // console.log("item : " + angular.toJson(item , ' '));
         //if item is new in the cart
+        console.log("fireBaseData.refCart() : " + fireBaseData.refCart());
         fireBaseData.refCart().child(uid).child('cartList').child(item.$id).set({    // set
           item_name: item.name,
           item_image: item.image,

@@ -20,7 +20,7 @@ $scope.loadSelectedProd = function () {
 $scope.loadSelectedProd();
 $scope.addToCart = function(item){
 // IonicPopupService.alert("Item added to cart");
-console.log("item : " + angular.toJson(item , ' '));
+// console.log("item : " + angular.toJson(item , ' '));
     sharedCartService.add(item);
  };
 

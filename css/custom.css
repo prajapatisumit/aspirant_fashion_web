@@ -137,3 +137,53 @@
  .bgchange{
   background-color: #555555;
 }
+.signup_fb{
+  margin-left: 10%;
+}
+.signup_google{
+  margin-left: 1%;
+}
+.sign_fb{
+  color: #fff;
+  background-color: #3b5998;
+  border-color: rgba(0,0,0,0.2);
+}
+.sign_fb:hover {
+    color: #fff;
+    background-color: #2d4373;
+    border-color: rgba(0,0,0,0.2);
+}
+.sign_google{
+  color: #fff;
+  background-color: #dd4b39;
+  border-color: rgba(0,0,0,0.2);
+}
+.sign_google:hover {
+    color: #fff;
+    background-color: #c23321;
+    border-color: rgba(0,0,0,0.2);
+}
+.login_setup{
+  margin-top: 14%;
+}
+.emptycart{
+  display: block;
+ margin-left: auto;
+ margin-right: auto;
+ height: 200px;
+ width: 250px;
+}
+.cart_center{
+  margin: 1%;
+  text-align: center;
+}
+.cart_button{
+    background-color: #555555;
+    padding: 12px 15px 10px 15px;
+    line-height: 10px;
+    color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+}
