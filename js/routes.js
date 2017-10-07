@@ -63,7 +63,7 @@ angular.module('aspirantfashion')
 //       controller: 'orderReviewCtrl'
 // })
 .state('ordersummary', {
-    url: '/ordersummary:selected_ProductOrderSummary_id',
+    url: '/ordersummary?:selected_ProductOrderSummary_id',
       templateUrl: 'templates/ordersummary.html',
       controller: 'orderSummaryCtrl'
 })

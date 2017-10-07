@@ -3,7 +3,7 @@ angular.module('aspirantfashion')
 
   var uid ;// uid is temporary user_id
   var cart={}; // the main Object
-  var guestUser = SessionService.getUser();
+  // var guestUser = SessionService.getUser();
   // Check if user already logged in
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -11,12 +11,13 @@ angular.module('aspirantfashion')
       uid= user.uid;
       cart.cart_items = $firebaseArray(fireBaseData.refCart().child(uid).child('cartList'));
     //  console.log("cart.cart_items at service : " + angular.toJson(cart.cart_items , ' '));
-    } else if (!!guestUser && guestUser.guestID) {
-      ////for guest user :
-      uid = guestUser.guestID;
-      console.log("uid at else part at service : " + uid);
-      cart.cart_items = $firebaseArray(fireBaseData.refCart().child(uid).child('cartList'));
     }
+    //  else if (!!guestUser && guestUser.guestID) {
+    //   ////for guest user :
+    //   uid = guestUser.guestID;
+    //   console.log("uid at else part at service : " + uid);
+    //   cart.cart_items = $firebaseArray(fireBaseData.refCart().child(uid).child('cartList'));
+    // }
   });
   //Add to Cart
   cart.add = function(item) {
@@ -75,9 +76,10 @@ angular.module('aspirantfashion')
             fireBaseData.refCart().child(uid).child(item_id).update({
               item_qty : currentQty+1
             });
-        }else {
-            IonicPopupService.alert("Oops", "Sorry more stock is not available.");
         }
+        // else {
+        //     IonicPopupService.alert("Oops", "Sorry more stock is not available.");
+        // }
       }else{
           console.log("Item id is not available");
         //pop error

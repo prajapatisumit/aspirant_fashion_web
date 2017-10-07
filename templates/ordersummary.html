@@ -32,8 +32,8 @@
                                       <td><a>{{selectedCartData.item_name}}</a>
                                       </td>
                                       <td>{{selectedCartData.item_qty}}</td>
-                                      <td>{{selectedCartData.item_price}}</td>
-                                      <td>{{selectedCartData.item_qty * selectedCartData.item_price }}</td>
+                                      <td><i class="fa fa-inr" aria-hidden="true"></i>{{selectedCartData.item_price}}</td>
+                                      <td><i class="fa fa-inr" aria-hidden="true"></i>{{selectedCartData.item_qty * selectedCartData.item_price }}</td>
                                   </tr>
                               </tbody>
                               <tbody  ng-if="!selectedProId" ng-repeat="ordersummarydata in selectedCartData">
@@ -46,22 +46,22 @@
                                       <td><a>{{ordersummarydata.item_name}}</a>
                                       </td>
                                       <td>{{ordersummarydata.item_qty}}</td>
-                                      <td>{{ordersummarydata.item_price}}</td>
-                                      <td>{{ordersummarydata.item_qty * ordersummarydata.item_price }}</td>
+                                      <td><i class="fa fa-inr" aria-hidden="true"></i>{{ordersummarydata.item_price}}</td>
+                                      <td><i class="fa fa-inr" aria-hidden="true"></i>{{ordersummarydata.item_qty * ordersummarydata.item_price }}</td>
                                   </tr>
                               </tbody>
                               <tfoot>
                                   <tr>
                                       <th colspan="5" class="text-right">Order subtotal</th>
-                                      <th><i class="fa fa-inr" aria-hidden="true">{{get_qty()}}</i></th>
+                                      <th><i class="fa fa-inr" aria-hidden="true"></i>{{get_qty()}}</th>
                                   </tr>
-                                  <!-- <tr>
+                                  <tr>
                                       <th colspan="5" class="text-right">Shipping and handling</th>
-                                      <th><i class="fa fa-inr" aria-hidden="true">$10.00</i></th>
-                                  </tr> -->
+                                      <th><i class="fa fa-inr" aria-hidden="true"></i>10.00</th>
+                                  </tr>
                                   <tr>
                                       <th colspan="5" class="text-right">Total</th>
-                                      <th>$456.00</th>
+                                      <th><i class="fa fa-inr" aria-hidden="true"></i>{{get_qty()}}</th>
                                   </tr>
                               </tfoot>
                           </table>

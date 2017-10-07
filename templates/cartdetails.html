@@ -49,20 +49,19 @@
                                             </a>
                                         </td>
                                         <td>{{cartproduct.item_name}}</td>
-                                        <td>
-                                            <input type="number" ng-value="{{cartproduct.item_qty}}" class="form-control">
-                                        </td>
-                                        <td class="fa fa-inr">{{cartproduct.item_price}} </td>
+                                        <td class="input-group">
+                                          <input type="number" ng-model="selectedCartData[$index].item_qty"  ng-value="{{cartproduct.item_qty}}" class="input-group" ng-change="updateQty(selectedCartData[$index].item_qty)" ng-model-options="{updateOn: 'blur'}" />
+                                          </td>
+                                        <td><i class="fa fa-inr" aria-hidden="true"></i>{{cartproduct.item_price}} </td>
                                         <!-- <td>$0.00</td> -->
-                                        <td>{{cartproduct.item_qty * cartproduct.item_price }}</td>
+                                        <td ><i class="fa fa-inr" aria-hidden="true"></i>{{cartproduct.item_qty * cartproduct.item_price }}</td>
                                         <td><a ng-click="removeFromCart(cartproduct.$id)"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
-
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th colspan="5">Total</th>
+                                        <th colspan="4">Total</th>
                                         <th colspan="2" class="fa fa-inr">{{total_amount}}</th>
                                     </tr>
                                 </tfoot>
@@ -150,26 +149,26 @@
                     <div class="box-header">
                         <h3>Order summary</h3>
                     </div>
-                    <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+                    <p class="text-muted">Shipping costs are calculated based on the values you have selected.</p>
 
                     <div class="table-responsive">
                         <table class="table">
                             <tbody>
                                 <tr>
                                     <td>Order subtotal</td>
-                                    <th class="fa fa-inr">{{total_amount}}</th>
+                                    <th><i class="fa fa-inr" aria-hidden="true">{{total_amount}}</i></th>
                                 </tr>
                                 <tr>
                                     <td>Shipping and handling</td>
-                                    <th>$10.00</th>
+                                    <th><i class="fa fa-inr" aria-hidden="true">{{shippingRate}}</i></th>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td>Tax</td>
                                     <th>$0.00</th>
-                                </tr>
+                                </tr> -->
                                 <tr class="total">
                                     <td>Total</td>
-                                    <th>$456.00</th>
+                                    <th><i class="fa fa-inr" aria-hidden="true">{{finalTotal}}</i></th>
                                 </tr>
                             </tbody>
                         </table>
@@ -198,7 +197,7 @@
                     </form>
                 </div>
 
-            </div> -->
+            </div>
             <!-- /.col-md-3 -->
 
         </div>

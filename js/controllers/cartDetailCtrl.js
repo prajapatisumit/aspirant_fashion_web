@@ -20,12 +20,23 @@ angular.module('aspirantfashion')
          $scope.get_qty = function() {
            $scope.total_qty=0;
            $scope.total_amount=0;
-           for (var i = 0; i < sharedCartService.cart_items.length; i++) {
-             $scope.total_qty += sharedCartService.cart_items[i].item_qty;
-             $scope.total_amount += (sharedCartService.cart_items[i].item_qty * sharedCartService.cart_items[i].item_price);
-             $scope.total_weight += (sharedCartService.cart_items[i].item_qty * sharedCartService.cart_items[i].item_weight);
+           $scope.total_weight=0;
+           for (var i = 0; i < $scope.selectedCartData.length; i++) {
+             $scope.total_qty += $scope.selectedCartData[i].item_qty;
+             $scope.total_amount += ($scope.selectedCartData[i].item_qty * $scope.selectedCartData[i].item_price);
+             $scope.total_weight += ($scope.selectedCartData[i].item_qty * $scope.selectedCartData[i].item_weight);
            }
-           return $scope.total_qty;
+          var weightInKg = $scope.total_weight / 1000;
+          var finalWeight = Math.ceil(weightInKg);
+          console.log('finalWeight : ' + finalWeight);
+           if ($scope.selectedCartData.length < 1) {
+               $scope.shippingRate = 0;
+           }  else {
+               $scope.shippingRate = 55 * finalWeight;
+           }
+             $scope.finalTotal = $scope.shippingRate + $scope.total_amount;
+             return $scope.total_qty;
+
          };
 
        }
@@ -40,6 +51,9 @@ angular.module('aspirantfashion')
         sharedCartService.drop(c_id);
       }
    };
+   $scope.updateQty = function (qty) {
+     $scope.get_qty();
+   }
      $scope.goForCheckout= function () {
        $state.go('usercheckout');
      };

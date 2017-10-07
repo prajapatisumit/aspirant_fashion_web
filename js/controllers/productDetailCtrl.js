@@ -273,8 +273,9 @@ $scope.gohomepage= function () {
        $scope.isSelectLocation = false;
      };
      $scope.goForCheckout = function (selectedProduct) {
+         sharedCartService.add(selectedProduct);
         //  console.log("selectedProduct..."+ angular.toJson(selectedProduct));
-         SessionService.setUserProduct(selectedProduct);
+        //  SessionService.setUserProduct(selectedProduct);
          console.log('selectedProduct.$id : ' + selectedProduct.$id);
        $state.go('checkoutwithbuy',{'selected_buyProduct_id':selectedProduct.$id});
      };

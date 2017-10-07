@@ -73,8 +73,8 @@ angular.module('aspirantfashion')
                                 isAdmin: false
 
                             }
-                            $rootScope.userLog = userObj;
-                            SessionService.setUser(obj);
+                            // $rootScope.userLog = userObj;
+                            //   SessionService.setUser(obj);
                             console.log("$rootScope.userLog when new facebook user login : " + angular.toJson($rootScope.userLog, ' '));
                             var ref = firebase.database().ref('users/' + user.uid);
                             ref.set(userObj).then(function(snapshot) {
@@ -117,9 +117,9 @@ angular.module('aspirantfashion')
                                     photoURL: $scope.userObj.photoURL,
                                     isAdmin: $scope.userObj.isAdmin
                                 }
-                                // $rootScope.userLog = obj;
-                                // SessionService.setUser(obj);
-                                // console.log("$rootScope.user when user alredy signin with facebook..: " + angular.toJson($rootScope.userLog, ' '));
+                                $rootScope.userLog = obj;
+                                SessionService.setUser(obj);
+                                console.log("$rootScope.user when user alredy signin with facebook..: " + angular.toJson($rootScope.userLog, ' '));
                             });
                             // sharedUtils.hideLoading();
                             // $state.go('home', {});
@@ -134,8 +134,8 @@ angular.module('aspirantfashion')
                                 photoURL: user.photoURL,
                                 isAdmin: false
                             }
-                            // $rootScope.userLog = userObj;
-                            // SessionService.setUser(obj);
+                            $rootScope.userLog = userObj;
+                            SessionService.setUser(obj);
                             // console.log("$rootScope.userLog when new google user login : " + angular.toJson($rootScope.userLog, ' '));
                             var ref = firebase.database().ref('users/' + user.uid);
                             ref.set(userObj).then(function(snapshot) {
