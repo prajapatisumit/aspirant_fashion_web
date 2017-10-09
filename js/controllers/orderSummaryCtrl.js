@@ -11,7 +11,8 @@ angular.module('aspirantfashion')
         cartObj.$loaded()
           .then(function (response) {
             $scope.selectedCartData = response;
-      console.log("$scope.selectedCartData"+ angular.toJson($scope.selectedCartData));
+            $scope.getOneProduct();
+      // console.log("$scope.selectedCartData"+ angular.toJson($scope.selectedCartData));
           });
   } else {
      selectedCartRef = firebase.database().ref('cart/' + user.uid + '/cartList');
@@ -19,19 +20,48 @@ angular.module('aspirantfashion')
      cartObj.$loaded()
        .then(function (response) {
          $scope.selectedCartData = response;
-    console.log("$scope.selectedCartData"+ angular.toJson($scope.selectedCartData));
+         $scope.get_qty();
+    // console.log("$scope.selectedCartData"+ angular.toJson($scope.selectedCartData));
        });
        $scope.cart=sharedCartService.cart_items;
    }
+   $scope.getOneProduct = function(data) {
+     $scope.total_qty=0;
+     $scope.total_amount=0;
+     $scope.total_weight=0;
+      $scope.total_qty = $scope.selectedCartData.item_qty;
+      $scope.total_amount = ($scope.selectedCartData.item_qty * $scope.selectedCartData.item_price);
+      $scope.total_weight = ($scope.selectedCartData.item_qty * $scope.selectedCartData.item_weight);
+    var weightInKg = $scope.total_weight / 1000;
+    var finalWeight = Math.ceil(weightInKg);
+    console.log('finalWeight : ' + finalWeight);
+     if ($scope.selectedCartData.length < 1) {
+         $scope.shippingRate = 0;
+     }  else {
+         $scope.shippingRate = 55 * finalWeight;
+     }
+       $scope.finalTotal = $scope.shippingRate + $scope.total_amount;
+       return $scope.total_qty;
+   };
    $scope.get_qty = function() {
      $scope.total_qty=0;
      $scope.total_amount=0;
-     for (var i = 0; i < sharedCartService.cart_items.length; i++) {
-       $scope.total_qty += sharedCartService.cart_items[i].item_qty;
-       $scope.total_amount += (sharedCartService.cart_items[i].item_qty * sharedCartService.cart_items[i].item_price);
-       $scope.total_weight += (sharedCartService.cart_items[i].item_qty * sharedCartService.cart_items[i].item_weight);
+     $scope.total_weight=0;
+     for (var i = 0; i < $scope.selectedCartData.length; i++) {
+       $scope.total_qty += $scope.selectedCartData[i].item_qty;
+       $scope.total_amount += ($scope.selectedCartData[i].item_qty * $scope.selectedCartData[i].item_price);
+       $scope.total_weight += ($scope.selectedCartData[i].item_qty * $scope.selectedCartData[i].item_weight);
      }
-     return $scope.total_amount;
+    var weightInKg = $scope.total_weight / 1000;
+    var finalWeight = Math.ceil(weightInKg);
+    console.log('finalWeight : ' + finalWeight);
+     if ($scope.selectedCartData.length < 1) {
+         $scope.shippingRate = 0;
+     }  else {
+         $scope.shippingRate = 55 * finalWeight;
+     }
+       $scope.finalTotal = $scope.shippingRate + $scope.total_amount;
+       return $scope.total_qty;
    };
 $scope.userAddress = SessionService.getUserDeliveryLocation();
 console.log("$scope.userAddress"+ angular.toJson($scope.userAddress,' '));

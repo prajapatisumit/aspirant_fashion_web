@@ -2,7 +2,7 @@ angular.module('aspirantfashion')
  .controller("productCtrl", function($scope,$stateParams,$firebaseArray,$state,$anchorScroll) {
      var allProducts = [];
   $scope.selectedId = $stateParams.subcategory_id;
-  // console.log("$scope.selectedId : " + $scope.selectedId);
+  console.log("$scope.selectedId : " + $scope.selectedId);
   $scope.loadSidebar = function () {
     sidebarDataRef = firebase.database().ref('category');
         sidebarDataObj = $firebaseArray(sidebarDataRef);
@@ -25,7 +25,7 @@ $scope.loadSelectedProd = function () {
           $scope.categoryData = response;
           allProducts = response;
           $anchorScroll();
-        // console.log("$scope.categoryData    : " + angular.toJson($scope.categoryData, ' '));
+        //  console.log("$scope.categoryData    : " + angular.toJson($scope.categoryData, ' '));
         });
 };
 $scope.getProductById= function (subcategoryId) {
@@ -91,7 +91,7 @@ $scope.loadBrand = function () {
     $state.go('home');
   };
   $scope.goProductpage= function (selectedProId) {
-    console.log('its working'+selectedProId);
+    // console.log('its working'+selectedProId);
     $state.go('productdetails',{'selected_product_id':selectedProId});
   };
 $scope.loadBrand();

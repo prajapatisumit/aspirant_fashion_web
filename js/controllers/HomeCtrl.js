@@ -119,7 +119,7 @@ angular.module('aspirantfashion')
               });
       };
       $scope.goCategoryWiseAllproducts = function(categoryId){
-            console.log('its working'+categoryId);
+            // console.log('its working'+categoryId);
             $anchorScroll();
             $state.go('catProducts',{'category_id':categoryId});
       }

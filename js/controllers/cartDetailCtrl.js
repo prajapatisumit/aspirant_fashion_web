@@ -51,7 +51,13 @@ angular.module('aspirantfashion')
         sharedCartService.drop(c_id);
       }
    };
-   $scope.updateQty = function (qty) {
+   $scope.updateQty = function (obj) {
+       var id = obj.$id;
+      //  var updatedItem = obj.item_qty;
+    //  console.log("updatedItem : " + angular.toJson(updatedItem , ' '));
+     firebase.database().ref('cart/' + $scope.user.uid + '/cartList/'+ id).update({
+        "item_qty" : obj.item_qty
+        });
      $scope.get_qty();
    }
      $scope.goForCheckout= function () {

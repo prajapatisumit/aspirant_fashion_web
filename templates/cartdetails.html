@@ -50,7 +50,7 @@
                                         </td>
                                         <td>{{cartproduct.item_name}}</td>
                                         <td class="input-group">
-                                          <input type="number" ng-model="selectedCartData[$index].item_qty"  ng-value="{{cartproduct.item_qty}}" class="input-group" ng-change="updateQty(selectedCartData[$index].item_qty)" ng-model-options="{updateOn: 'blur'}" />
+                                          <input type="number" ng-model="selectedCartData[$index].item_qty"  ng-value="{{cartproduct.item_qty}}" class="input-group" ng-change="updateQty(cartproduct)" ng-model-options="{updateOn: 'blur'}" />
                                           </td>
                                         <td><i class="fa fa-inr" aria-hidden="true"></i>{{cartproduct.item_price}} </td>
                                         <!-- <td>$0.00</td> -->

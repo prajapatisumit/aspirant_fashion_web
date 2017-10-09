@@ -99,7 +99,7 @@ angular.module('aspirantfashion')
                                 isAdmin: $scope.userObj.isAdmin
 
                             }
-                            $rootScope.userLog = obj;
+                            // $rootScope.userLog = obj;
                             SessionService.setUser(obj);
                             console.log("$rootScope.user when user alredy signin with facebook..: " + angular.toJson($rootScope.userLog, ' '));
                         });
@@ -162,14 +162,15 @@ angular.module('aspirantfashion')
                                 isAdmin: $scope.userObj.isAdmin
                             }
                             // $rootScope.userLog = obj;
-                            // SessionService.setUser(obj);
+                            SessionService.setUser(obj);
+                              $scope.close();
                             // console.log("$rootScope.user when user alredy signin with facebook..: " + angular.toJson($rootScope.userLog, ' '));
                         });
                         // sharedUtils.hideLoading();
                         // $state.go('home', {});
                         // TODO: refresh current page
                         console.log("user already saved..");
-                        $scope.close();
+
                    } else {
                         var userObj = {
                             uid: user.uid,
@@ -185,6 +186,7 @@ angular.module('aspirantfashion')
                         ref.set(userObj).then(function(snapshot) {
                             console.log('user set successfully...');
                         });
+                          $scope.close();
                         $state.go('home');
                     }
 

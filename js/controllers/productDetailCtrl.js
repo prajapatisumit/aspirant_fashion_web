@@ -1,5 +1,5 @@
 angular.module('aspirantfashion')
-.controller('productDetailCtrl', function($scope,$state,$stateParams,$firebaseObject,sharedCartService,SessionService) {
+.controller('productDetailCtrl', function($scope,$state,$stateParams,$firebaseObject,$firebaseArray,sharedCartService,SessionService) {
 $scope.selectedProId = $stateParams.selected_product_id;
 // console.log("$scope.selectedProId"+ $scope.selectedProId);
 firebase.auth().onAuthStateChanged(function(user) {
@@ -14,6 +14,7 @@ $scope.loadSelectedProd = function () {
       productObj.$loaded()
         .then(function (response) {
           $scope.selectedProductData = response;
+             $scope.loadyoumaylikeproudcts($scope.selectedProductData.subcategory);
             // console.log("$scope.selectedProductData"+ angular.toJson($scope.selectedProductData));
         });
 };
@@ -27,8 +28,6 @@ $scope.addToCart = function(item){
 $scope.gohomepage= function () {
   $state.go('home');
 };
-
-
     ///for favourite :
     $scope.loadFavourite = function () {
       var refFavoriteData = firebase.database().ref('favourits/' + $scope.user.uid + '/' +  $scope.selectedProId);
@@ -46,7 +45,6 @@ $scope.gohomepage= function () {
 
           });
     };
-
      $scope.setFavourite = function (productDetail) {
          $scope.productDetail = productDetail;
             // console.log("productDetail : " + angular.toJson(productDetail , ' '));
@@ -90,7 +88,17 @@ $scope.gohomepage= function () {
            });
          });
    };
+   $scope.loadyoumaylikeproudcts = function (id) {
+            categoryRef = firebase.database().ref('product').orderByChild('subcategory').equalTo(id).limitToFirst(3);
+           categoryObj = $firebaseArray(categoryRef);
+           categoryObj.$loaded()
+             .then(function (response) {
+               $scope.categoryData = response;
+            console.log("$scope.categoryData    : " + angular.toJson($scope.categoryData, ' '));
+             });
+     };
 
+  //  $scope.selectedProSubCat();
    var geocoder;
    var geocoder = new google.maps.Geocoder();
    $scope.userCity = '';
@@ -155,8 +163,9 @@ $scope.gohomepage= function () {
                $scope.getuserLocation = SessionService.getUserLocation();
               //  console.log('$scope.getuserLocation' + angular.toJson($scope.getuserLocation, ' '));
               //  $scope.modal.hide();
+              $scope.isEnterPin = false;
                 $scope.isSelectLocation = true;
-                $scope.isEnterPin = false;
+
 
              // console.log("userAddressByZip : " + angular.toJson($scope.userAddressByZip , ' '));
              // console.log("user current addres  : " + $scope.city.long_name + " " + $scope.state.long_name + " " + $scope.county.long_name + " " + $scope.postalCode.long_name);
@@ -168,7 +177,7 @@ $scope.gohomepage= function () {
        });
    };
  // $scope.userAddress = {};
- $scope.userAddressArray=[];
+ // $scope.userAddressArray=[];
  $scope.addressByLocation = function () {
          $scope.userAddressByZip = '';
          $scope.isEnterPin = false;

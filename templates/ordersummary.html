@@ -46,22 +46,22 @@
                                       <td><a>{{ordersummarydata.item_name}}</a>
                                       </td>
                                       <td>{{ordersummarydata.item_qty}}</td>
-                                      <td><i class="fa fa-inr" aria-hidden="true"></i>{{ordersummarydata.item_price}}</td>
-                                      <td><i class="fa fa-inr" aria-hidden="true"></i>{{ordersummarydata.item_qty * ordersummarydata.item_price }}</td>
+                                      <td><i class="fa fa-inr" aria-hidden="true">{{ordersummarydata.item_price}}</i></td>
+                                      <td><i class="fa fa-inr" aria-hidden="true">{{ordersummarydata.item_qty * ordersummarydata.item_price }}</i></td>
                                   </tr>
                               </tbody>
                               <tfoot>
                                   <tr>
                                       <th colspan="5" class="text-right">Order subtotal</th>
-                                      <th><i class="fa fa-inr" aria-hidden="true"></i>{{get_qty()}}</th>
+                                      <th><i class="fa fa-inr" aria-hidden="true">{{total_amount}}</i></th>
                                   </tr>
                                   <tr>
                                       <th colspan="5" class="text-right">Shipping and handling</th>
-                                      <th><i class="fa fa-inr" aria-hidden="true"></i>10.00</th>
+                                      <th><i class="fa fa-inr" aria-hidden="true">{{shippingRate}}</i></th>
                                   </tr>
                                   <tr>
                                       <th colspan="5" class="text-right">Total</th>
-                                      <th><i class="fa fa-inr" aria-hidden="true"></i>{{get_qty()}}</th>
+                                      <th><i class="fa fa-inr" aria-hidden="true">{{finalTotal}}</i></th>
                                   </tr>
                               </tfoot>
                           </table>

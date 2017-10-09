@@ -139,7 +139,7 @@
                                       </td>
                                       <td><a>{{selectedCartData.item_name}}</a>
                                       </td>
-                                      <td><input type="number" ng-value="{{selectedCartData.item_qty}}" class="form-control"></td>
+                                      <td><input type="number" ng-model="selectedCartData.item_qty"  ng-value="{{selectedCartData.item_qty}}" class="input-group" ng-change="updateQty(selectedCartData)" ng-model-options="{updateOn: 'blur'}" /></td>
                                       <td><i class="fa fa-inr" aria-hidden="true"></i>{{selectedCartData.item_price}}</i></td>
                                       <td><i class="fa fa-inr" aria-hidden="true"></i>{{selectedCartData.item_qty * selectedCartData.item_price}}</td>
                                   </tr>
@@ -153,17 +153,17 @@
                                       </td>
                                       <td><a>{{orderReviewData.item_name}}</a>
                                       </td>
-                                      <td><input type="number" ng-value="{{orderReviewData.item_qty}}" class="form-control"></td>
+                                      <td>{{orderReviewData.item_qty}}</td>
                                       <td><i class="fa fa-inr" aria-hidden="true">{{orderReviewData.item_price}}</i></td>
                                       <td>{{orderReviewData.item_qty * orderReviewData.item_price}}</td>
                                   </tr>
                               </tbody>
-                              <tfoot ng-if="isAddress">
+                              <!-- <tfoot ng-if="isAddress"> -->
                                   <tr>
-                                      <th colspan="5">Total</th>
-                                      <th><i class="fa fa-inr" aria-hidden="true">{{get_qty()}}</i></th>
+                                      <th colspan="4">Total</th>
+                                      <th><i class="fa fa-inr" aria-hidden="true">{{total_amount}}</i></th>
                                   </tr>
-                              </tfoot>
+                              <!-- </tfoot> -->
                           </table>
                         </div>
                       </div>
@@ -201,19 +201,19 @@
                          <tbody>
                              <tr>
                                  <td>Order subtotal</td>
-                                 <th class="fa fa-inr">{{total_amount}}</th>
+                                 <th><i class="fa fa-inr" aria-hidden="true">{{total_amount}}</i></th>
                              </tr>
                              <tr>
                                  <td>Shipping and handling</td>
-                                 <th>$10.00</th>
+                                 <th><i class="fa fa-inr" aria-hidden="true">{{shippingRate}}</i></th>
                              </tr>
-                             <tr>
+                             <!-- <tr>
                                  <td>Tax</td>
                                  <th>$0.00</th>
-                             </tr>
+                             </tr> -->
                              <tr class="total">
                                  <td>Total</td>
-                                 <th>$456.00</th>
+                                 <th><i class="fa fa-inr" aria-hidden="true">{{finalTotal}}</i></th>
                              </tr>
                          </tbody>
                      </table>

@@ -33,7 +33,7 @@ function header() {
         $state.go('useraccount');
       };
       $scope.goProducts= function (subcategoryId) {
-          // console.log("subcategory_id : " + angular.toJson(subcategoryId,''));
+        console.log("subcategory_id : " + angular.toJson(subcategoryId,''));
         $state.go('products', { 'subcategory_id': subcategoryId });
       };
       ////for check user login :
@@ -92,7 +92,7 @@ function header() {
       };
 
       //////for elastic serch functionality :
-        $scope.serch =function () {
+        $scope.search =function () {
             elasticSearchService.search().then(function(data) {
               console.log(' All search data comes : ' + angular.toJson(data, ''));
               $scope.searchResult = data;
