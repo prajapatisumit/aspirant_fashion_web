@@ -2,7 +2,7 @@ angular.module('aspirantfashion')
  .controller("productCtrl", function($scope,$stateParams,$firebaseArray,$state,$anchorScroll) {
      var allProducts = [];
   $scope.selectedId = $stateParams.subcategory_id;
-  console.log("$scope.selectedId : " + $scope.selectedId);
+  // console.log("$scope.selectedId : " + $scope.selectedId);
   $scope.loadSidebar = function () {
     sidebarDataRef = firebase.database().ref('category');
         sidebarDataObj = $firebaseArray(sidebarDataRef);

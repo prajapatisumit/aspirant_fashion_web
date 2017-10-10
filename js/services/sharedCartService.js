@@ -12,25 +12,9 @@ angular.module('aspirantfashion')
       cart.cart_items = $firebaseArray(fireBaseData.refCart().child(uid).child('cartList'));
     //  console.log("cart.cart_items at service : " + angular.toJson(cart.cart_items , ' '));
     }
-    //  else if (!!guestUser && guestUser.guestID) {
-    //   ////for guest user :
-    //   uid = guestUser.guestID;
-    //   console.log("uid at else part at service : " + uid);
-    //   cart.cart_items = $firebaseArray(fireBaseData.refCart().child(uid).child('cartList'));
-    // }
   });
   //Add to Cart
   cart.add = function(item) {
-  // console.log("item at service...: " + angular.toJson(item , ' '));
-    // check if item is already added or not
-    // var guestUser = SessionService.getUser();
-    //   // console.log("guestUser at service : " + angular.toJson(guestUser , ' '));
-    // if (!!guestUser && guestUser.uid) {
-    //   ////for guest user :
-    //   uid = guestUser.uid;
-    //   console.log("uid at else part at service : " + uid);
-    //   cart.cart_items = $firebaseArray(fireBaseData.refCart().child(uid).child('cartList'));
-    // }
     fireBaseData.refCart().child(uid).child('cartList').once("value", function(snapshot) {
       // console.log("snapshot.val() : " + angular.toJson(snapshot.val() , ' '));
       if(snapshot.hasChild(item.$id) == true ){
@@ -41,7 +25,7 @@ angular.module('aspirantfashion')
         });
       }
       else{
-        console.log("else is calling...");
+        // console.log("else is calling...");
         // console.log("item : " + angular.toJson(item , ' '));
         //if item is new in the cart
         console.log("fireBaseData.refCart() : " + fireBaseData.refCart());

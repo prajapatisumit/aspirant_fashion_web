@@ -1,5 +1,5 @@
 angular.module('aspirantfashion')
-.controller('productDetailCtrl', function($scope,$state,$stateParams,$firebaseObject,$firebaseArray,sharedCartService,SessionService) {
+.controller('productDetailCtrl', function($scope,$state,$stateParams,$rootScope,$uibModal,$firebaseObject,$firebaseArray,sharedCartService,SessionService) {
 $scope.selectedProId = $stateParams.selected_product_id;
 // console.log("$scope.selectedProId"+ $scope.selectedProId);
 firebase.auth().onAuthStateChanged(function(user) {
@@ -15,19 +15,22 @@ $scope.loadSelectedProd = function () {
         .then(function (response) {
           $scope.selectedProductData = response;
              $scope.loadyoumaylikeproudcts($scope.selectedProductData.subcategory);
-            // console.log("$scope.selectedProductData"+ angular.toJson($scope.selectedProductData));
+          //  console.log("$scope.selectedProductData"+ angular.toJson($scope.selectedProductData));
         });
 };
 $scope.loadSelectedProd();
+var user = firebase.auth().currentUser;
 $scope.addToCart = function(item){
-// IonicPopupService.alert("Item added to cart");
-// console.log("item : " + angular.toJson(item , ' '));
+  if (user) {
     sharedCartService.add(item);
- };
+  } else {
+    $rootScope.modalInstance = $uibModal.open({
+      templateUrl: 'templates/signIn.html',
+  });
+  }
+// console.log("item : " + angular.toJson(item , ' '));
 
-$scope.gohomepage= function () {
-  $state.go('home');
-};
+ };
     ///for favourite :
     $scope.loadFavourite = function () {
       var refFavoriteData = firebase.database().ref('favourits/' + $scope.user.uid + '/' +  $scope.selectedProId);
@@ -46,6 +49,7 @@ $scope.gohomepage= function () {
           });
     };
      $scope.setFavourite = function (productDetail) {
+       if(user){
          $scope.productDetail = productDetail;
             // console.log("productDetail : " + angular.toJson(productDetail , ' '));
            var productObj = {
@@ -76,27 +80,47 @@ $scope.gohomepage= function () {
          }).catch(function (error) {
            console.log('Error at set favourite : ' + error);
          });
-
-     };
-     $scope.deletefevorite = function(productId) {
-       console.log("productId  : " + productId);
-         var deleteFevoriteRef = firebase.database().ref('favourits/' + $scope.user.uid + '/' + productId);
-         var deleteFevoriteProductRef = firebase.database().ref('product/' + productId + '/favouriteBy/' + $scope.user.uid);
-         deleteFevoriteRef.remove().then(function (response) {
-           deleteFevoriteProductRef.remove().then(function (response) {
-             $scope.loadFavourite();
-           });
+       }else{
+           $rootScope.modalInstance = $uibModal.open({
+             templateUrl: 'templates/signIn.html',
          });
+       }
+     };
+     $scope.deletefavourite = function(productId) {
+       if (user) {
+         console.log("productId  : " + productId);
+           var deleteFevoriteRef = firebase.database().ref('favourits/' + $scope.user.uid + '/' + productId);
+           var deleteFevoriteProductRef = firebase.database().ref('product/' + productId + '/favouriteBy/' + $scope.user.uid);
+           deleteFevoriteRef.remove().then(function (response) {
+             deleteFevoriteProductRef.remove().then(function (response) {
+               $scope.loadFavourite();
+             });
+           });
+       } else {
+         $rootScope.modalInstance = $uibModal.open({
+           templateUrl: 'templates/signIn.html',
+       });
+       }
    };
    $scope.loadyoumaylikeproudcts = function (id) {
-            categoryRef = firebase.database().ref('product').orderByChild('subcategory').equalTo(id).limitToFirst(3);
-           categoryObj = $firebaseArray(categoryRef);
-           categoryObj.$loaded()
+            youmaylikeproudctsRef = firebase.database().ref('product').orderByChild('subcategory').equalTo(id).limitToFirst(3);
+           youmaylikeproudctsObj = $firebaseArray(youmaylikeproudctsRef);
+           youmaylikeproudctsObj.$loaded()
              .then(function (response) {
-               $scope.categoryData = response;
-            console.log("$scope.categoryData    : " + angular.toJson($scope.categoryData, ' '));
+               $scope.youmaylikeproudctsData = response;
+            // console.log("$scope.youmaylikeproudctsData    : " + angular.toJson($scope.youmaylikeproudctsData, ' '));
              });
      };
+     $scope.loadlikeProduct =function (id) {
+       selectedProductRef = firebase.database().ref('product/' + id);
+           productObj = $firebaseObject(selectedProductRef);
+           productObj.$loaded()
+             .then(function (response) {
+               $scope.selectedProductData = response;
+                 console.log("$scope.selectedProductData"+ angular.toJson($scope.selectedProductData,' '));
+             });
+           };
+
 
   //  $scope.selectedProSubCat();
    var geocoder;
@@ -281,11 +305,25 @@ $scope.gohomepage= function () {
        $scope.isEnterPin = true;
        $scope.isSelectLocation = false;
      };
+     $scope.loadProductViewedRecently = function () {
+       selectedProductRef = firebase.database().ref('product/' + $scope.selectedProId);
+           productObj = $firebaseArray(selectedProductRef);
+           productObj.$loaded()
+             .then(function (response) {
+               $scope.selectedProductData = response;
+               //  console.log("$scope.selectedProductData"+ angular.toJson($scope.selectedProductData));
+             });
+     };
      $scope.goForCheckout = function (selectedProduct) {
+       if (user) {
          sharedCartService.add(selectedProduct);
-        //  console.log("selectedProduct..."+ angular.toJson(selectedProduct));
         //  SessionService.setUserProduct(selectedProduct);
-         console.log('selectedProduct.$id : ' + selectedProduct.$id);
+        //  console.log('selectedProduct.$id : ' + selectedProduct.$id);
        $state.go('checkoutwithbuy',{'selected_buyProduct_id':selectedProduct.$id});
+       } else {
+         $rootScope.modalInstance = $uibModal.open({
+           templateUrl: 'templates/signIn.html',
+       });
+       }
      };
 });
