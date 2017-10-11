@@ -69,9 +69,9 @@
   padding-left: 10px;
   padding-top: 7px;
 }
-.buttons_addbuy{
+/*.buttons_addbuy{
   padding-top: 21%;
-}
+}*/
 .button_big{
   width: 40%;
 }
@@ -186,4 +186,17 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 5%;
+}
+.image {
+      display: inline;
+    }
+.image img {
+        height: 200px;
+        width: 200px;
+      object-fit: cover;
+    }
+.fixedheightThumb{
+    max-height: 10%;
+    max-width: 80%;
+    object-fit: cover;
 }

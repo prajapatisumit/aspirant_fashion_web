@@ -8,7 +8,6 @@ function header() {
     scope: {},
     controller: function($scope,$state,$firebaseArray,$uibModal,$stateParams,$log,sharedCartService,$firebaseObject,SessionService,fireBaseData,elasticSearchService) {
       $scope.goSignup= function () {
-        console.log('its working');
         $state.go('signup');
       };
       $scope.goCartPage= function () {
@@ -20,7 +19,6 @@ function header() {
         }
       };
       $scope.gohomepage= function () {
-        console.log('its working');
         $state.go('home');
       };
       $scope.goOrderDetails= function () {
@@ -33,7 +31,7 @@ function header() {
         $state.go('useraccount');
       };
       $scope.goProducts= function (subcategoryId) {
-        console.log("subcategory_id : " + angular.toJson(subcategoryId,''));
+        // console.log("subcategory_id : " + angular.toJson(subcategoryId,''));
         $state.go('products', { 'subcategory_id': subcategoryId });
       };
       ////for check user login :
@@ -84,7 +82,7 @@ function header() {
       $scope.logout = function() {
           firebase.auth().signOut().then(function() {
               $scope.isLogin = false;
-              console.log('logout successfully');
+              // console.log('logout successfully');
               $state.reload();
           }, function(error) {
               console.log('error' + error);
@@ -94,7 +92,7 @@ function header() {
       //////for elastic serch functionality :
         $scope.search =function () {
             elasticSearchService.search().then(function(data) {
-              console.log(' All search data comes : ' + angular.toJson(data, ''));
+              // console.log(' All search data comes : ' + angular.toJson(data, ''));
               $scope.searchResult = data;
             });
         };

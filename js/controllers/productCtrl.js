@@ -1,5 +1,5 @@
 angular.module('aspirantfashion')
- .controller("productCtrl", function($scope,$stateParams,$firebaseArray,$state,$anchorScroll) {
+ .controller("productCtrl", function($scope,$stateParams,$firebaseArray,fireBaseData ,$state,$anchorScroll,SessionService) {
      var allProducts = [];
   $scope.selectedId = $stateParams.subcategory_id;
   // console.log("$scope.selectedId : " + $scope.selectedId);
@@ -90,8 +90,13 @@ $scope.loadBrand = function () {
   $scope.goHomepage= function () {
     $state.go('home');
   };
-  $scope.goProductpage= function (selectedProId) {
-    // console.log('its working'+selectedProId);
+   var user = SessionService.getUser();
+  // console.log("user : " + angular.toJson(user,' '));
+  $scope.goProductpage= function (selectedProId,item) {
+  // debugger
+  //   console.log('item :'+ angular.toJson(item,' '));
+  //   console.log('its working'+selectedProId);
+  //   fireBaseData.refUser().child(user.uid).child('productsviewrecently').push(item);
     $state.go('productdetails',{'selected_product_id':selectedProId});
   };
 $scope.loadBrand();

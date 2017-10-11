@@ -87,7 +87,7 @@
                           <div class="col-sm-9">
                               <div class="row products" >
                                   <div class="col-md-4 col-sm-6" ng-repeat="item in categoryData">
-                             <div class="product" ng-click="goProductpage(item.$id)">
+                             <div class="product" ng-click="goProductpage(item.$id,item)">
                                  <div class="image">
                                      <a>
                                          <img  ng-src="{{item.image }}" alt=""  class="img-responsive image1 fixedSizeimg"  >
@@ -95,7 +95,7 @@
                                  </div>
                                  <!-- /.image -->
                                  <div class="text">
-                                     <h3><a>{{item.description}}</a></h3>
+                                     <h3><a>{{item.name}}</a></h3>
                                      <p class="price"><i class="fa fa-inr ng-binding" aria-hidden="true">{{item.price}}</i></p>
                                      <p class="buttons">
                                          <a href="shop-detail.html" class="btn btn-default">View detail</a>

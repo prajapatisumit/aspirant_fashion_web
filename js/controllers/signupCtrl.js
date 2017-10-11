@@ -3,16 +3,23 @@ angular.module('aspirantfashion')
         $scope.initPage = function() {
             $scope.loginUser = {};
         }
-        $scope.signupWithEmail = function(userdata) {
-            console.log("signupWithEmail : " + angular.toJson(userdata, ' '));
-
-            firebase.auth().createUserWithEmailAndPassword(userdata.email, userdata.password).then(function(response) {
+        $scope.signupWithEmail = function(users) {
+            console.log("signupWithEmail : " + angular.toJson(users, ' '));
+            firebase.auth().createUserWithEmailAndPassword(users.email, users.password).then(function(response) {
                 console.log("response data : " + angular.toJson(response, ' '));
-
                 firebase.database().ref('users/' + response.uid).set({
-                    displayName: userdata.name,
-                    email: userdata.email
+                    displayName: users.name,
+                    email: users.email
                 });
+            var signinObj = {
+                uid: response.uid,
+                displayName: users.name,
+                email: users.email,
+            }
+          var user = SessionService.setUser(signinObj);
+          // var getSessionUser = SessionService.getUser();
+          // console.log("getSessionUser : " + angular.toJson(getSessionUser , ' '));
+              $state.go('home');
             }).catch(function(error) {
                 console.log("error : " + error);
                 // Handle Errors here.
@@ -25,6 +32,7 @@ angular.module('aspirantfashion')
             // sharedUtils.showLoading();
             firebase.auth().signInWithEmailAndPassword($scope.loginUser.email, $scope.loginUser.password).then(function(result) {
                     console.log('login sucessfully..');
+
                     $state.go('home');
                 },
                 function(error) {
@@ -92,6 +100,9 @@ angular.module('aspirantfashion')
                 var credential = error.credential;
             });
         };
+
+        // for google authantication
+
         var googleProvider = new firebase.auth.GoogleAuthProvider();
         $scope.loginWithGoogle = function() {
             firebase.auth().signInWithPopup(googleProvider).then(function(result) {
@@ -99,7 +110,7 @@ angular.module('aspirantfashion')
                 // The signed-in user info.
                 var user = result.user;
                 console.log('user :'+ angular.toJson(user,' '));
-                var usersRef = $firebaseArray(firebase.database().ref('users/' + user.uid));
+                var usersRef = $firebaseObject(firebase.database().ref('users/' + user.uid));
                 usersRef.$loaded().then(function(response) {
                         $scope.data = response;
                          console.log("$scope.data : " + angular.toJson($scope.data , ' '));
@@ -116,6 +127,8 @@ angular.module('aspirantfashion')
                                 }
                                 $rootScope.userLog = obj;
                                 SessionService.setUser(obj);
+                  var sessionGoogleUser = SessionService.getUser();
+                                  console.log("sessionGoogleUser :"+ angular.toJson(sessionGoogleUser, ' '));
                                 console.log("$rootScope.user when user alredy signin with google..: " + angular.toJson($rootScope.userLog, ' '));
                             });
                             // sharedUtils.hideLoading();
@@ -131,9 +144,7 @@ angular.module('aspirantfashion')
                                 photoURL: user.photoURL,
                                 isAdmin: false
                             }
-                            $rootScope.userLog = userObj;
-                            SessionService.setUser(obj);
-                            // console.log("$rootScope.userLog when new google user login : " + angular.toJson($rootScope.userLog, ' '));
+                            SessionService.setUser(userObj);
                             var ref = firebase.database().ref('users/' + user.uid);
                             ref.set(userObj).then(function(snapshot) {
                                 console.log('user set successfully...');

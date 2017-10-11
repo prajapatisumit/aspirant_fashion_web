@@ -3645,10 +3645,6 @@ display: none;
   border: 2px solid;
   cursor: pointer;
 }
-.fixedheightThumb{
-  height: 14%;
-  width:100%;
-}
 .liststylehide{
   list-style-type: none;
   padding-left: 35px;

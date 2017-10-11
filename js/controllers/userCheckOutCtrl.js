@@ -7,6 +7,10 @@ angular.module('aspirantfashion')
    $scope.goOrderReviewPage= function () {
      $state.go('orderreview');
    };
+    $scope.userAddress = function () {
+        SessionService.setUserDeliveryLocation(null);
+    }
+
    $scope.isDivShow = false;
    $scope.showDiv = function (isEdit) {
      if ($scope.isDivShow === false) {
@@ -119,12 +123,18 @@ angular.module('aspirantfashion')
     $scope.isAddress = true;
     $scope.isOrder = false;
     $scope.showorder= function () {
+    var sessionAddress = SessionService.getUserDeliveryLocation();
+      console.log("sessionAddress :"+ angular.toJson(sessionAddress,' '));
+      if (!!sessionAddress) {
         $scope.isAddress = false;
         $scope.isOrder = true;
+  }else {
+    alert("please fill Address")
     };
+};
     $scope.showAddress = function () {
-      $scope.isOrder = false;
-      $scope.isAddress = true;
+          $scope.isOrder = false;
+          $scope.isAddress = true;
     }
  var user = SessionService.getUser();
 console.log("user : " + angular.toJson(user,' '));

@@ -14,15 +14,16 @@ angular.module('aspirantfashion')
                   }
                 });
  $scope.saveUserdetail = function(userdata){
-   console.log("userdata : " + angular.toJson(userdata , ' '));
+  //  console.log("userdata : " + angular.toJson(userdata , ' '));
    firebase.database().ref('users/' + $scope.user.uid).set({
      firstName: userdata.firstName,
+     displayName: userdata.firstName + userdata.lastName,
      lastName: userdata.lastName,
      mobileNumber:userdata.mobileNumber,
      email : userdata.email,
      gender : userdata.gender
       });
-      console.log("data updated successfully...");
+      // console.log("data updated successfully...");
  };
  $scope.goMyOrders= function () {
    $state.go('orderdetails');
@@ -35,7 +36,7 @@ angular.module('aspirantfashion')
  };
  $scope.logout = function() {
      firebase.auth().signOut().then(function() {
-         console.log('logout successfully');
+        //  console.log('logout successfully');
         $state.reload();
      }, function(error) {
          console.log('error' + error);

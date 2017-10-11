@@ -1,10 +1,9 @@
 angular.module('aspirantfashion')
  .controller("orderSummaryCtrl", function($scope,$state,$firebaseObject,sharedCartService,SessionService,$stateParams,$firebaseArray) {
    var user = SessionService.getUser();
-  console.log("user : " + angular.toJson(user,' '));
+  // console.log("user : " + angular.toJson(user,' '));
   $scope.selectedProId = $stateParams.selected_ProductOrderSummary_id;
-  console.log("$scope.selectedProId : " + ($scope.selectedProId,' '));
-
+  // console.log("$scope.selectedProId : " + ($scope.selectedProId,' '));
   if(!!$scope.selectedProId){
     selectedCartRef = firebase.database().ref('cart/' + user.uid + '/cartList/' + $scope.selectedProId);
         cartObj = $firebaseObject(selectedCartRef);

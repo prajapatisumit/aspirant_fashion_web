@@ -112,7 +112,7 @@
                             <div class="col-md-3 col-sm-6" ng-repeat="youmaylikeproudcts in youmaylikeproudctsData" ng-click="loadlikeProduct(youmaylikeproudcts.$id)" ng-hide="youmaylikeproudcts.$id===selectedProductData.$id">
                                 <div class="product">
                                     <div class="image">
-                                        <a href="#">
+                                        <a>
                                             <img  ng-src="{{youmaylikeproudcts.image}}" alt="" class="img-responsive image1">
                                         </a>
                                     </div>
@@ -125,22 +125,22 @@
                             </div>
                           </div>
 
-                        <div class="row">
+                        <div class="row" ng-if="!!user.uid">
                             <div class="col-md-3 col-sm-6">
                                 <div class="box text-uppercase">
                                     <h3>Products viewed recently</h3>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col-md-3 col-sm-6" ng-repeat="ProductViewedRecently in ViewRecentlyProdData" ng-click="loadrecentlyProduct(ProductViewedRecently.$id)">
                                 <div class="product">
                                     <div class="image">
-                                        <a href="#">
-                                            <img src="img/product3.jpg" alt="" class="img-responsive image1">
+                                        <a >
+                                            <img ng-src="{{ProductViewedRecently.image}}" alt="" class="img-responsive image1">
                                         </a>
                                     </div>
                                     <div class="text">
-                                        <h3>Fur coat</h3>
-                                        <p class="fa fa-inr price">143</p>
+                                        <h3>{{ProductViewedRecently.name}}</h3>
+                                        <p><i class="fa fa-inr" aria-hidden="true">{{ProductViewedRecently.price}}</i></p>
                                     </div>
                                 </div>
                                 <!-- /.product -->
@@ -151,5 +151,3 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
