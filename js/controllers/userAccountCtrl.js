@@ -17,7 +17,7 @@ angular.module('aspirantfashion')
   //  console.log("userdata : " + angular.toJson(userdata , ' '));
    firebase.database().ref('users/' + $scope.user.uid).set({
      firstName: userdata.firstName,
-     displayName: userdata.firstName + userdata.lastName,
+     displayName: userdata.firstName  + " " + userdata.lastName,
      lastName: userdata.lastName,
      mobileNumber:userdata.mobileNumber,
      email : userdata.email,

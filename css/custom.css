@@ -141,7 +141,11 @@
   margin-left: 10%;
 }
 .signup_google{
-  margin-left: 1%;
+  margin-left: 12%;
+  margin-top: 5%;
+}
+.registernow{
+  margin-top: 5%;
 }
 .sign_fb{
   color: #fff;
@@ -199,4 +203,19 @@
     max-height: 10%;
     max-width: 80%;
     object-fit: cover;
+}
+.modal-dialog{
+  width: 300px;
+}
+#Login{
+  font-family: cursive;
+  text-align: center;
+}
+.wishlistbtn{
+  font-size: 11px;
+}
+.wishlistimg{
+    height: 150px !important;
+    width: 150px !important;
+    margin: 0 auto;
 }

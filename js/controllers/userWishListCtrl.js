@@ -1,6 +1,6 @@
 
 angular.module('aspirantfashion')
- .controller("userWishListCtrl", function($scope,$state,SessionService,$stateParams,$firebaseObject,$firebaseArray ) {
+ .controller("userWishListCtrl", function($scope,$state,SessionService,$stateParams,$firebaseObject,$firebaseArray,$window) {
    $scope.goMyOrders= function () {
      $state.go('orderdetails');
    };
@@ -35,10 +35,12 @@ angular.module('aspirantfashion')
    $scope.deletefevorite = function(productId) {
        var deleteFevoriteRef = firebase.database().ref('favourits/' + $scope.user.uid + '/' + productId);
        var deleteFevoriteProductRef = firebase.database().ref('product/' + productId + '/favouriteBy/' + $scope.user.uid);
-       deleteFevoriteRef.remove().then(function (response) {
-         deleteFevoriteProductRef.remove().then(function (response) {
-         });
-       });
-
+          var deleteFavourite = $window.confirm('Are you sure you want to delete the Your Favproduct?');
+          if(deleteFavourite){
+            deleteFevoriteRef.remove().then(function (response) {
+              deleteFevoriteProductRef.remove().then(function (response) {
+              });
+            });
+          }
  };
  });

@@ -16,86 +16,84 @@
                </div>
            </div>
        </div>
-       <div id="content">
-                 <div class="container">
+                         <div id="content">
+                             <div class="container">
 
-                     <div class="row">
+                                 <div class="row">
 
-                         <!-- *** LEFT COLUMN ***
-     		     _________________________________________________________ -->
+                                     <!-- *** LEFT COLUMN ***
+                 		     _________________________________________________________ -->
 
-                         <div class="col-md-9 clearfix">
-
-                             <p class="lead">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-
-                             <div class="row products">
-
-                                 <div class="col-md-10" ng-repeat="fav in favouritsData">
-
-                                     <div class="product wishlist">
-                                         <div class="image">
-                                             <a href="shop-detail.html">
-                                                 <img ng-src="{{fav.image}}" alt="" class="img-responsive image1" style="height: 200px; width: 350px;">
-                                             </a>
+                                     <div class="col-md-9 clearfix">
+                                         <div class="row products">
+                                             <div class="col-md-4 col-sm-4" ng-repeat="fav in favouritsData">
+                                                 <div class="product">
+                                                     <div class="image">
+                                                         <a>
+                                                             <img ng-src="{{fav.image}}" alt="" class="img-responsive image1 wishlistimg">
+                                                         </a>
+                                                     </div>
+                                                     <!-- /.image -->
+                                                     <div class="text">
+                                                         <h3><a>{{fav.productName}}</a></h3>
+                                                         <p><i class="fa fa-inr" aria-hidden="true">{{fav.price}}</i></p>
+                                                         <p>
+                                                           <a class="btn btn-danger  wishlistbtn" ng-click="deletefevorite(fav.productId)"><i class="fa fa-trash-o"></i>Remove from Wishlist</a>
+                                                         </p>
+                                                     </div>
+                                                     <!-- /.text -->
+                                                 </div>
+                                                 <!-- /.product -->
+                                             </div>
                                          </div>
-                                         <div>
-                                           <span style="color:red"><i class="fa fa-trash-o" aria-hidden="true" ng-click="deletefevorite(fav.productId)"> remove from wishlist</i></span>
-                                         </div>
-                                         <!-- /.image -->
-                                         <div class="text">
-                                             <h3><a href="shop-detail.html">Fur coat with very but very very long name</a></h3>
-                                             <p class="price" >${{fav.price}}</p>
-                                             <p class="buttons">
-                                                 <a href="shop-detail.html" class="btn btn-default">View detail</a>
-                                                 <a href="shop-basket.html" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                             </p>
-                                         </div>
-                                         <!-- /.text -->
-                                       </div>
-                                     <!-- /.product -->
-                                   </div>
+                                         <!-- /.products -->
 
-                                 <!-- /.col-md-4 -->
-                             </div>
-                             <!-- /.products -->
+                                     </div>
+                                     <!-- /.col-md-9 -->
 
-                         </div>
-                         <!-- /.col-md-9 -->
+                                     <!-- *** LEFT COLUMN END *** -->
 
-                         <!-- *** LEFT COLUMN END *** -->
+                                     <!-- *** RIGHT COLUMN ***
+                 		     _________________________________________________________ -->
 
-                         <!-- *** RIGHT COLUMN ***
-     		     _________________________________________________________ -->
+                                                  <div class="col-md-3">
+                                                      <!-- *** CUSTOMER MENU ***
+                               _________________________________________________________ -->
+                                                      <div class="panel panel-default sidebar-menu">
 
-                         <div class="col-md-3">
-                             <!-- *** CUSTOMER MENU ***
-      _________________________________________________________ -->
-                             <div class="panel panel-default sidebar-menu">
+                                                          <div class="panel-heading">
+                                                              <h3 class="panel-title">Customer section</h3>
+                                                          </div>
 
-                                 <div class="panel-heading">
-                                     <h3 class="panel-title">Customer section</h3>
+                                                          <div class="panel-body">
+
+                                                              <ul class="nav nav-pills nav-stacked">
+                                                                  <li >
+                                                                      <a ng-click="goMyOrders()"><i class="fa fa-list"></i> My orders</a>
+                                                                  </li>
+                                                                  <li class="active">
+                                                                      <a ng-click="goMywishList()"><i class="fa fa-heart"></i> My wishlist</a>
+                                                                  </li>
+                                                                  <li>
+                                                                      <a ng-click="goMyAccount()"><i class="fa fa-user"></i> My account</a>
+                                                                  </li>
+                                                                  <li>
+                                                                      <a ng-click="logout()"><i class="fa fa-sign-out"></i> Logout</a>
+                                                                  </li>
+                                                              </ul>
+                                                          </div>
+
+                                                      </div>
+                                                      <!-- /.col-md-3 -->
+
+                                                      <!-- *** CUSTOMER MENU END *** -->
+                                                  </div>
+
+                                     <!-- *** RIGHT COLUMN END *** -->
+
                                  </div>
-
-                                 <div class="panel-body">
-
-                                     <ul class="nav nav-pills nav-stacked">
-                                         <li >
-                                             <a ng-click="goMyOrders()"><i class="fa fa-list"></i> My orders</a>
-                                         </li>
-                                         <li class="active">
-                                             <a ng-click="goMywishList()"><i class="fa fa-heart"></i> My wishlist</a>
-                                         </li>
-                                         <li>
-                                             <a ng-click="goMyAccount()"><i class="fa fa-user"></i> My account</a>
-                                         </li>
-                                         <li>
-                                             <a ng-click="logout()"><i class="fa fa-sign-out"></i> Logout</a>
-                                         </li>
-                                     </ul>
-                                 </div>
+                                 <!-- /.row -->
 
                              </div>
-                             <!-- /.col-md-3 -->
-
-                             <!-- *** CUSTOMER MENU END *** -->
+                             <!-- /.container -->
                          </div>

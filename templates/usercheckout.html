@@ -136,7 +136,7 @@
                                               <img ng-src="{{selectedCartData.item_image}}">
                                           </a>
                                       </td>
-                                      <td><a>{{selectedCartData.item_name}}</a>
+                                      <td class="cursor"><a ng-click="goProductpage(selectedCartData.$id)">{{selectedCartData.item_name}}</a>
                                       </td>
                                       <td><input type="number" ng-model="selectedCartData.item_qty"  ng-value="{{selectedCartData.item_qty}}" class="input-group" ng-change="updateQty(selectedCartData)" ng-model-options="{updateOn: 'blur'}" /></td>
                                       <td><i class="fa fa-inr" aria-hidden="true"></i>{{selectedCartData.item_price}}</i></td>
@@ -150,7 +150,7 @@
                                               <img ng-src="{{orderReviewData.item_image}}">
                                           </a>
                                       </td>
-                                      <td><a>{{orderReviewData.item_name}}</a>
+                                      <td class="cursor"><a ng-click="goProductpage(orderReviewData.$id)">{{orderReviewData.item_name}}</a>
                                       </td>
                                       <td>{{orderReviewData.item_qty}}</td>
                                       <td><i class="fa fa-inr" aria-hidden="true">{{orderReviewData.item_price}}</i></td>

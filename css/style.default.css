@@ -279,8 +279,9 @@ ul.list-style-none {
   float: right;
 }
 #top .login a {
+  cursor: pointer;
   font-size: 12px;
-  color: #38a7bb;
+  color: #ffffff;
   margin-right: 15px;
   text-decoration: none;
   text-transform: uppercase;
@@ -2250,6 +2251,9 @@ fieldset[disabled] .btn-template-primary.active {
   -moz-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
     cursor: pointer;
+    height: 200px !important;
+    width: 200px !important;
+    margin: 0 auto;
 }
 @media (max-width: 767px) {
   .product .image img.img-responsive {

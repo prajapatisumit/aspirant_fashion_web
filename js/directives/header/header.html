@@ -18,8 +18,8 @@
                 </div> -->
 
                     <div class="login" ng-if="!isLogin">
-                        <a data-toggle="modal" ng-controller="signInCtrl" ng-click="openSignupModal()"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a>
-                        <a ng-click="goSignup()"><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Sign up</span></a>
+                        <a data-toggle="modal" ng-controller="registerLoginCtrl" ng-click="openSigninModal()"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a>
+                        <a data-toggle="modal" ng-controller="registerLoginCtrl"ng-click="openSignupModal()"><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Sign up</span></a>
                     </div>
                     <div class="login" ng-if="isLogin === true">
                       <ul class="liststylehide">

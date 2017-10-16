@@ -1,11 +1,14 @@
 angular.module('aspirantfashion')
-.controller('productDetailCtrl', function($scope,$state,$stateParams,$rootScope,$uibModal,$firebaseObject,$firebaseArray,sharedCartService,SessionService) {
+.controller('productDetailCtrl', function($scope,$state,$stateParams,$rootScope,$uibModal,$firebaseObject,$firebaseArray,sharedCartService,SessionService,$anchorScroll) {
 $scope.selectedProId = $stateParams.selected_product_id;
 // console.log("$scope.selectedProId"+ $scope.selectedProId);
 firebase.auth().onAuthStateChanged(function(user) {
+  // console.log("user: " + angular.toJson(user , ' '));
   if (user) {
+
     $scope.user=user; //Saves data to user_info
     $scope.loadFavourite();
+    // $scope.loadviewRecentlyProd();
 }
 });
 $scope.loadyoumaylikeproudcts = function (id) {
@@ -14,6 +17,7 @@ $scope.loadyoumaylikeproudcts = function (id) {
         youmaylikeproudctsObj.$loaded()
           .then(function (response) {
             $scope.youmaylikeproudctsData = response;
+            // console.log("youmaylikeproudctsData..... : " + angular.toJson($scope.youmaylikeproudctsData,' '));
           });
   };
 $scope.loadSelectedProd = function () {
@@ -22,11 +26,12 @@ ref.once("value", function(snapshot) {
   $scope.selectedProductData = snapshot.val();
   $scope.loadyoumaylikeproudcts($scope.selectedProductData.subcategory);
   var user = SessionService.getUser();
+  if(!!user){
   $scope.selectedProductData.$id = snapshot.key;
   var viewRecentlyProdObj = snapshot.val();
    viewRecentlyProdObj.productId = snapshot.key;
   var loadRecentlyViewprod = firebase.database().ref('users').child(user.uid).child('productsviewrecently').orderByChild('productId').equalTo($scope.selectedProductData.$id).limitToLast(3);
-  loadRecentlyViewprodObj = $firebaseArray(loadRecentlyViewprod);
+    loadRecentlyViewprodObj = $firebaseArray(loadRecentlyViewprod);
       loadRecentlyViewprodObj.$loaded()
       .then(function (response) {
             if (!!response && response.length<1){
@@ -35,10 +40,9 @@ ref.once("value", function(snapshot) {
             console.log("item is already in recently view");
             }
         });
-
+}
 });
 };
-$scope.loadSelectedProd();
 $scope.loadviewRecentlyProd = function () {
     var user = SessionService.getUser();
         var loadViewRecentlyProdRef = firebase.database().ref('users').child(user.uid).child('productsviewrecently').limitToLast(3);
@@ -48,10 +52,16 @@ $scope.loadviewRecentlyProd = function () {
                  $scope.ViewRecentlyProdData = response;
                });
        };
-  $scope.loadviewRecentlyProd();
+var user = SessionService.getUser();
+if(!!user){
+          $scope.loadviewRecentlyProd();
+       } else {
+         console.log("not load recently product");
+       }
+$scope.loadSelectedProd();
 var user = firebase.auth().currentUser;
 $scope.addToCart = function(item){
-  if (user) {
+  if (!!user) {
     sharedCartService.add(item);
   } else {
     $rootScope.modalInstance = $uibModal.open({
@@ -94,9 +104,9 @@ $scope.addToCart = function(item){
            };
 
          firebase.database().ref().child('product/' + $scope.productDetail.$id + '/favouriteBy/' + $scope.user.uid).set(userObj).then(function (response) {
-                console.log("favourite added successfully at product...");
+                // console.log("favourite added successfully at product...");
                 firebase.database().ref().child('favourits/' + $scope.user.uid + '/' + $scope.productDetail.$id).set(productObj).then(function (response) {
-                 console.log("favourite added successfully at favourites...");
+                //  console.log("favourite added successfully at favourites...");
                  $scope.loadFavourite();
                 }).catch(function (error) {
                   console.log('Error at set favourite : ' + error);
@@ -112,7 +122,7 @@ $scope.addToCart = function(item){
      };
      $scope.deletefavourite = function(productId) {
        if (user) {
-         console.log("productId  : " + productId);
+        //  console.log("productId  : " + productId);
            var deleteFevoriteRef = firebase.database().ref('favourits/' + $scope.user.uid + '/' + productId);
            var deleteFevoriteProductRef = firebase.database().ref('product/' + productId + '/favouriteBy/' + $scope.user.uid);
            deleteFevoriteRef.remove().then(function (response) {
@@ -134,7 +144,8 @@ $scope.addToCart = function(item){
            productObj.$loaded()
              .then(function (response) {
                $scope.selectedProductData = response;
-                 console.log("$scope.selectedProductData"+ angular.toJson($scope.selectedProductData,' '));
+               $anchorScroll();
+                //  console.log("$scope.selectedProductData"+ angular.toJson($scope.selectedProductData,' '));
              });
            };
        $scope.loadrecentlyProduct =function (id) {
@@ -144,7 +155,8 @@ $scope.addToCart = function(item){
              productObj.$loaded()
                .then(function (response) {
                  $scope.selectedProductData = response;
-                   console.log("$scope.selectedProductData"+ angular.toJson($scope.selectedProductData,' '));
+                  $anchorScroll();
+                  //  console.log("$scope.selectedProductData"+ angular.toJson($scope.selectedProductData,' '));
                });
              };
    var geocoder;

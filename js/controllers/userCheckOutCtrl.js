@@ -10,7 +10,10 @@ angular.module('aspirantfashion')
     $scope.userAddress = function () {
         SessionService.setUserDeliveryLocation(null);
     }
-
+    $scope.goProductpage= function (selectedProd) {
+    $state.go('productdetails',{'selected_product_id':selectedProd});
+    };
+    var sessionUser = SessionService.getUser();
    $scope.isDivShow = false;
    $scope.showDiv = function (isEdit) {
      if ($scope.isDivShow === false) {

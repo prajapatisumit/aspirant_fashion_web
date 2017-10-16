@@ -1,10 +1,10 @@
-  <div class="modal-content" ng-controller="signInCtrl">
+<div class="modal-content" ng-controller="registerLoginCtrl">
                     <div class="modal-header">
                           <button type="button" class="close" ng-click="close()"data-dismiss="modal" aria-hidden="true">×</button>
-                          <h4 class="modal-title" id="Login">Customer login</h4>
+                          <h3 class="modal-title" id="Login">Login</h3>
                     </div>
                     <div class="modal-body">
-                        <form >
+                        <form>
                               <div class="form-group">
                                   <input type="text" class="form-control" ng-model="user.email" id="email_modal" placeholder="email">
                               </div>
@@ -20,10 +20,12 @@
                             <a class="btn btn-social btn-facebook sign_fb signup_fb" ng-click="loginWithFacebook()">
                               <span class="fa fa-facebook"></span> Sign in with Facebook
                             </a>
+                          </div>
+                          <div>
                             <a class="btn btn-social btn-google sign_google signup_google" ng-click="loginWithGoogle()">
                                 <span class="fa fa-google"></span> Sign in with Google
                             </a>
                         </div>
-                        <p class="text-center text-muted"><a ng-click="goSignup()" ><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
+                        <p class="text-center text-muted registernow"><a ng-click="goSignup()" ><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
                     </div>
   </div>

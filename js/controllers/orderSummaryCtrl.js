@@ -33,7 +33,7 @@ angular.module('aspirantfashion')
       $scope.total_weight = ($scope.selectedCartData.item_qty * $scope.selectedCartData.item_weight);
     var weightInKg = $scope.total_weight / 1000;
     var finalWeight = Math.ceil(weightInKg);
-    console.log('finalWeight : ' + finalWeight);
+    // console.log('finalWeight : ' + finalWeight);
      if ($scope.selectedCartData.length < 1) {
          $scope.shippingRate = 0;
      }  else {
@@ -53,7 +53,7 @@ angular.module('aspirantfashion')
      }
     var weightInKg = $scope.total_weight / 1000;
     var finalWeight = Math.ceil(weightInKg);
-    console.log('finalWeight : ' + finalWeight);
+    // console.log('finalWeight : ' + finalWeight);
      if ($scope.selectedCartData.length < 1) {
          $scope.shippingRate = 0;
      }  else {
@@ -63,6 +63,6 @@ angular.module('aspirantfashion')
        return $scope.total_qty;
    };
 $scope.userAddress = SessionService.getUserDeliveryLocation();
-console.log("$scope.userAddress"+ angular.toJson($scope.userAddress,' '));
+// console.log("$scope.userAddress"+ angular.toJson($scope.userAddress,' '));
 
 });

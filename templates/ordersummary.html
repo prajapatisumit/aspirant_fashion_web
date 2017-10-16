@@ -6,7 +6,7 @@
               <!-- *** LEFT COLUMN ***
  _________________________________________________________ -->
 
-              <div class="col-md-9 clearfix" id="customer-order">
+              <div class="col-md-12 clearfix" id="customer-order">
                 <h1 class="lead" style="text-align:center;"> Order Summary </h1>
                   <!-- <p class="lead">Order #1735 was placed on <strong>22/06/2013</strong> and is currently <strong>Being prepared</strong>.</p>
                   <p class="lead text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p> -->
@@ -25,25 +25,21 @@
                               <tbody ng-if="!!selectedProId">
                                   <tr>
                                       <td>
-                                          <a href="#">
                                               <img ng-src="{{selectedCartData.item_image}}" >
-                                          </a>
                                       </td>
-                                      <td><a>{{selectedCartData.item_name}}</a>
+                                      <td>{{selectedCartData.item_name}}
                                       </td>
                                       <td>{{selectedCartData.item_qty}}</td>
-                                      <td><i class="fa fa-inr" aria-hidden="true"></i>{{selectedCartData.item_price}}</td>
-                                      <td><i class="fa fa-inr" aria-hidden="true"></i>{{selectedCartData.item_qty * selectedCartData.item_price }}</td>
+                                      <td><i class="fa fa-inr" aria-hidden="true">{{selectedCartData.item_price}}</i></td>
+                                      <td><i class="fa fa-inr" aria-hidden="true">{{selectedCartData.item_qty * selectedCartData.item_price }}</i></td>
                                   </tr>
                               </tbody>
                               <tbody  ng-if="!selectedProId" ng-repeat="ordersummarydata in selectedCartData">
                                   <tr>
                                       <td>
-                                          <a href="#">
                                               <img ng-src="{{ordersummarydata.item_image}}" >
-                                          </a>
                                       </td>
-                                      <td><a>{{ordersummarydata.item_name}}</a>
+                                      <td>{{ordersummarydata.item_name}}
                                       </td>
                                       <td>{{ordersummarydata.item_qty}}</td>
                                       <td><i class="fa fa-inr" aria-hidden="true">{{ordersummarydata.item_price}}</i></td>
@@ -107,40 +103,6 @@
 
               <!-- *** RIGHT COLUMN ***
  _________________________________________________________ -->
-
-              <div class="col-md-3">
-                  <!-- *** CUSTOMER MENU ***
-_________________________________________________________ -->
-                  <div class="panel panel-default sidebar-menu">
-
-                      <div class="panel-heading">
-                          <h3 class="panel-title">Customer section</h3>
-                      </div>
-
-                      <div class="panel-body">
-
-                          <ul class="nav nav-pills nav-stacked">
-                              <li class="active">
-                                  <a href="customer-orders.html"><i class="fa fa-list"></i> My orders</a>
-                              </li>
-                              <li>
-                                  <a href="customer-wishlist.html"><i class="fa fa-heart"></i> My wishlist</a>
-                              </li>
-                              <li>
-                                  <a href="customer-account.html"><i class="fa fa-user"></i> My account</a>
-                              </li>
-                              <li>
-                                  <a href="index.html"><i class="fa fa-sign-out"></i> Logout</a>
-                              </li>
-                          </ul>
-                      </div>
-
-                  </div>
-                  <!-- /.col-md-3 -->
-
-                  <!-- *** CUSTOMER MENU END *** -->
-              </div>
-
               <!-- *** RIGHT COLUMN END *** -->
 
           </div>

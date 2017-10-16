@@ -11,7 +11,7 @@ function header() {
         $state.go('signup');
       };
       $scope.goCartPage= function () {
-          var qty = $scope.total_qty;
+        var qty = $scope.total_qty;
         if (!!qty) {
           $state.go('cartdetails');
         }else {
@@ -45,12 +45,11 @@ function header() {
           $scope.get_qty = function() {
             $scope.total_qty=0;
             $scope.total_amount=0;
-
+            $scope.total_weight=0;
             for (var i = 0; i < sharedCartService.cart_items.length; i++) {
               $scope.total_qty += sharedCartService.cart_items[i].item_qty;
               $scope.total_amount += (sharedCartService.cart_items[i].item_qty * sharedCartService.cart_items[i].item_price);
               $scope.total_weight += (sharedCartService.cart_items[i].item_qty * sharedCartService.cart_items[i].item_weight);
-
             }
             return $scope.total_qty;
           };
@@ -82,8 +81,13 @@ function header() {
       $scope.logout = function() {
           firebase.auth().signOut().then(function() {
               $scope.isLogin = false;
+              // SessionService.setUser(null);
+              // SessionService.setUserLocation(null);
+              sessionStorage.clear();
+              localStorage.clear();
+              $state.go('home');
               // console.log('logout successfully');
-              $state.reload();
+              // $state.reload();
           }, function(error) {
               console.log('error' + error);
           });
